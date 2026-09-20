@@ -1,23 +1,39 @@
-import { roadmaps } from '../../data/mock/content'
-import { Card, Button, PageTitle } from '../../components/ui/primitives'
+import { useState } from 'react'
+import { roadmaps, roadmapProgress } from '../../data/mock/content'
+import { myProfile } from '../../data/mock/talent'
+import { Card, Button, PageTitle, Chip } from '../../components/ui/primitives'
 import { ProgressBar } from '../../components/ui/ProgressRing'
 
 /**
- * Career Roadmap — a role-based learning path tied to the builder's progress.
- * Completed milestones link back to what made the profile stronger.
+ * Career Roadmap — a role-based learning path. The role defaults to the
+ * builder's own profile role and can be switched; progress is derived from
+ * completed milestones, not a hardcoded number.
  */
+const ROLE_KEYS = Object.keys(roadmaps)
+
 export default function Roadmap() {
-  const r = roadmaps['Full-Stack']
+  // Default to the builder's profile role when a path exists for it.
+  const [roleKey, setRoleKey] = useState(roadmaps[myProfile.role] ? myProfile.role : 'Full-Stack')
+  const r = roadmaps[roleKey]
+  const progress = roadmapProgress(r)
+
   return (
     <>
       <PageTitle eyebrow="Career Roadmap" title={r.role} />
 
+      {/* role selector */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {ROLE_KEYS.map((k) => (
+          <Chip key={k} active={k === roleKey} onClick={() => setRoleKey(k)}>{roadmaps[k].role}</Chip>
+        ))}
+      </div>
+
       <Card className="p-6 mb-6">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-sm text-bone">Path progress</p>
-          <span className="text-acid font-display text-xl">{r.progress}%</span>
+          <p className="text-sm text-bone">Path progress · {r.milestones.filter((m) => m.done).length}/{r.milestones.length} milestones</p>
+          <span className="text-acid font-display text-xl">{progress}%</span>
         </div>
-        <ProgressBar value={r.progress} />
+        <ProgressBar value={progress} />
       </Card>
 
       <div className="relative border-l-2 border-bone/12 ml-3 space-y-6">

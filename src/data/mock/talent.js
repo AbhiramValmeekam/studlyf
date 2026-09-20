@@ -5,6 +5,14 @@ export const ROLES = ['Frontend', 'Backend', 'Full-Stack', 'ML Engineer', 'Data'
 export const SKILLS = ['React', 'Node.js', 'Python', 'TypeScript', 'ML', 'UI/UX', 'Go', 'AWS', 'SQL', 'Figma']
 export const LOCATIONS = ['Bengaluru', 'Hyderabad', 'Pune', 'Remote', 'Delhi']
 export const AVAILABILITY = ['Immediate', '1 month', 'Interning', 'Open to offers']
+export const EXPERIENCE = ['Fresher', '1 internship', '2 internships', 'Freelance']
+export const GITHUB_ACTIVITY = ['High', 'Medium', 'Low']
+export const EVAL_BANDS = ['90+', '80–89', 'Below 80']
+export const HACKATHON_BANDS = ['1–2', '3–4', '5+']
+
+// Bucket a candidate's top evaluation / hackathon count into the filter options.
+export const evalBand = (v) => (v >= 90 ? '90+' : v >= 80 ? '80–89' : 'Below 80')
+export const hackathonBand = (n) => (n <= 2 ? '1–2' : n <= 4 ? '3–4' : '5+')
 
 export const candidates = [
   {

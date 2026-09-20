@@ -17,7 +17,8 @@ npm run preview  # serve the built dist/
 
 **Deploying:** it's a client-routed SPA (React Router), so the host must fall back to `index.html` for unknown paths or deep links like `/builder/opportunities` will 404. Configs are included:
 
-- **Netlify** — `netlify.toml` (build `npm run build`, publish `dist`) + `public/_redirects`. Connect the repo; no extra setup.
+- **Cloudflare Workers** — `wrangler.jsonc` deploys `dist/` as Static Assets with `not_found_handling: single-page-application`. Run `npm run build && npx wrangler deploy`.
+- **Netlify** — `netlify.toml` (build `npm run build`, publish `dist`) with a `/* → /index.html 200` redirect. Connect the repo; no extra setup.
 - **Vercel** — `vercel.json` (build command, output dir, SPA rewrite). Import the repo; framework preset "Vite".
 - **Any static host** — build with `npm run build`, serve `dist/`, and route all unknown paths to `index.html`.
 

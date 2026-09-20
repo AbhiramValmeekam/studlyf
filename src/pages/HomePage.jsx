@@ -3,6 +3,7 @@ import { useSmoothScroll, ScrollTrigger } from '../lib/smooth'
 
 import Loader from '../components/Loader'
 import Navbar from '../components/Navbar'
+import LightRays from '../components/LightRays'
 
 import Hero from '../sections/Hero'
 import Ecosystem from '../sections/Ecosystem'
@@ -38,7 +39,22 @@ export default function HomePage() {
       <Loader onDone={() => setReady(true)} />
       <Navbar ready={ready} />
 
-      <main className="relative">
+      <LightRays
+        className="light-rays-bg"
+        raysOrigin="top-center"
+        raysColor="#c7f24e"
+        raysSpeed={1.1}
+        lightSpread={0.9}
+        rayLength={1.6}
+        followMouse
+        mouseInfluence={0.08}
+        noiseAmount={0.08}
+        distortion={0.04}
+        fadeDistance={1.1}
+        saturation={0.9}
+      />
+
+      <main className="relative z-10">
         <Hero play={ready} />
         <EntryPoints />
         <Ecosystem />

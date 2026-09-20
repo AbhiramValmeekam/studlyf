@@ -12,7 +12,10 @@ const TOOLS = [
   { to: '/startup/workspace/market', name: 'Market Analysis', desc: 'TAM / SAM / SOM, customers, competitors.' },
   { to: '/startup/workspace/swot', name: 'SWOT', desc: 'Strengths, weaknesses, opportunities, threats.' },
   { to: '/startup/workspace/gtm', name: 'GTM Strategy', desc: 'Channels, motion and milestones.' },
+  { to: '/startup/workspace/marketing', name: 'Marketing Plan', desc: 'Channels, budget split and funnel targets.' },
+  { to: '/startup/workspace/competitors', name: 'Competitor Analysis', desc: 'Position against rivals on the axes that matter.' },
   { to: '/startup/workspace/readiness', name: 'Startup Readiness', desc: 'Score your investor-readiness.' },
+  { to: '/startup/workspace/intelligence', name: 'Startup / VC Intelligence', desc: 'Active investors, cheque sizes and market signals.' },
 ]
 
 export default function FounderWorkspace() {

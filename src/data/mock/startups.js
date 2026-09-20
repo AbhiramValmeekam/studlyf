@@ -5,6 +5,17 @@ const IMG = '/scraped'
 export const INDUSTRIES = ['Fintech', 'HealthTech', 'AI/ML', 'SaaS', 'ClimateTech', 'EdTech', 'Commerce']
 export const STAGES = ['Idea', 'Pre-seed', 'Seed', 'Series A']
 export const STARTUP_LOCATIONS = ['Bengaluru', 'Mumbai', 'Delhi NCR', 'Hyderabad', 'Remote']
+export const REVENUE_BANDS = ['₹25L–1Cr', '₹1–5Cr', '₹5Cr+']
+export const FUNDING_STAGES = ['Idea', 'Pre-seed', 'Seed', 'Series A']
+export const TEAM_SIZES = ['1–10', '11–25', '25+']
+export const TRACTION_LEVELS = ['Early', 'Growing', 'Scaling']
+
+// Bucket a startup's team size / traction into the filter options above.
+export const teamSizeBucket = (n) => (n <= 10 ? '1–10' : n <= 25 ? '11–25' : '25+')
+export const tractionLevel = (s) => {
+  const order = { Idea: 0, 'Pre-seed': 0, Seed: 1, 'Series A': 2 }
+  return ['Early', 'Growing', 'Scaling'][order[s.fundingStage] ?? 0]
+}
 
 export const startups = [
   {

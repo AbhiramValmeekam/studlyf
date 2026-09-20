@@ -24,7 +24,6 @@ export const hubTools = [
 export const roadmaps = {
   'Full-Stack': {
     role: 'Full-Stack Engineer',
-    progress: 62,
     milestones: [
       { name: 'Web foundations', done: true, note: 'HTML, CSS, JS, HTTP' },
       { name: 'Frontend framework', done: true, note: 'React + state management' },
@@ -34,4 +33,30 @@ export const roadmaps = {
       { name: 'Ship & get discovered', done: false, note: 'Deploy, evaluate, apply' },
     ],
   },
+  'Frontend': {
+    role: 'Frontend Engineer',
+    milestones: [
+      { name: 'Web foundations', done: true, note: 'Semantic HTML, modern CSS' },
+      { name: 'JavaScript deep-dive', done: true, note: 'ES2023, async, modules' },
+      { name: 'React & state', done: true, note: 'Hooks, context, data fetching' },
+      { name: 'Motion & polish', done: false, note: 'Transitions, GSAP, a11y' },
+      { name: 'Performance', done: false, note: 'Bundle budgets, rendering' },
+      { name: 'Ship & get discovered', done: false, note: 'Deploy, evaluate, apply' },
+    ],
+  },
+  'ML Engineer': {
+    role: 'ML Engineer',
+    milestones: [
+      { name: 'Math & Python', done: true, note: 'Linear algebra, NumPy, pandas' },
+      { name: 'Classical ML', done: true, note: 'Regression, trees, evaluation' },
+      { name: 'Deep learning', done: false, note: 'PyTorch, CNNs, transformers' },
+      { name: 'Applied NLP / CV', done: false, note: 'Fine-tuning, RAG, embeddings' },
+      { name: 'MLOps', done: false, note: 'Serving, monitoring, pipelines' },
+      { name: 'Ship & get discovered', done: false, note: 'Deploy, evaluate, apply' },
+    ],
+  },
 }
+
+// Progress is derived from completed milestones — not a hardcoded number — so it
+// reflects the builder's actual advancement through the path.
+export const roadmapProgress = (r) => Math.round((r.milestones.filter((m) => m.done).length / r.milestones.length) * 100)

@@ -42,6 +42,7 @@ export default function HrCandidate() {
         <div className="flex flex-wrap gap-4 mt-5 pt-5 border-t border-bone/10 text-sm text-bone2">
           <a href="#" className="hover:text-acid" data-cursor="hover">↗ {c.github} ({c.githubActivity} activity)</a>
           <a href="#" className="hover:text-acid" data-cursor="hover">↗ {c.linkedin}</a>
+          <a href="#" className="hover:text-acid" data-cursor="hover">↗ {c.portfolio || `${c.github.split('/')[1]}.studlyf.dev`} (portfolio)</a>
           <span>◇ {c.hackathons} hackathons</span>
           <span>◇ {c.experience}</span>
         </div>

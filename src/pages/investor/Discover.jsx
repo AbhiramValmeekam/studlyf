@@ -1,6 +1,10 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { startups, INDUSTRIES, STAGES, STARTUP_LOCATIONS } from '../../data/mock/startups'
+import {
+  startups, INDUSTRIES, STAGES, STARTUP_LOCATIONS,
+  REVENUE_BANDS, FUNDING_STAGES, TEAM_SIZES, TRACTION_LEVELS,
+  teamSizeBucket, tractionLevel,
+} from '../../data/mock/startups'
 import { useSession } from '../../context/SessionContext'
 import { Card, Tag, Button, PageTitle, EmptyState } from '../../components/ui/primitives'
 import { FilterBar } from '../../components/ui/FilterBar'
@@ -9,7 +13,13 @@ const GROUPS = [
   { key: 'industry', label: 'Industry', options: INDUSTRIES },
   { key: 'stage', label: 'Stage', options: STAGES },
   { key: 'location', label: 'Location', options: STARTUP_LOCATIONS },
+  { key: 'revenue', label: 'Revenue', options: REVENUE_BANDS },
+  { key: 'funding', label: 'Funding stage', options: FUNDING_STAGES },
+  { key: 'team', label: 'Team size', options: TEAM_SIZES },
+  { key: 'traction', label: 'Traction', options: TRACTION_LEVELS },
 ]
+
+const EMPTY = { industry: [], stage: [], location: [], revenue: [], funding: [], team: [], traction: [] }
 
 /**
  * Investor Founder Discovery — filter startup/founder cards by industry, stage,
@@ -18,11 +28,11 @@ const GROUPS = [
 export default function InvestorDiscover() {
   const { connections, toggleConnect } = useSession()
   const [query, setQuery] = useState('')
-  const [selected, setSelected] = useState({ industry: [], stage: [], location: [] })
+  const [selected, setSelected] = useState(EMPTY)
 
   const toggle = (key, opt) =>
     setSelected((s) => ({ ...s, [key]: s[key].includes(opt) ? s[key].filter((v) => v !== opt) : [...s[key], opt] }))
-  const clear = () => setSelected({ industry: [], stage: [], location: [] })
+  const clear = () => setSelected(EMPTY)
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -31,6 +41,10 @@ export default function InvestorDiscover() {
       if (selected.industry.length && !selected.industry.includes(s.industry)) return false
       if (selected.stage.length && !selected.stage.includes(s.stage)) return false
       if (selected.location.length && !selected.location.includes(s.location)) return false
+      if (selected.revenue.length && !selected.revenue.includes(s.revenueBand)) return false
+      if (selected.funding.length && !selected.funding.includes(s.fundingStage)) return false
+      if (selected.team.length && !selected.team.includes(teamSizeBucket(s.teamSize))) return false
+      if (selected.traction.length && !selected.traction.includes(tractionLevel(s))) return false
       return true
     })
   }, [query, selected])
@@ -62,6 +76,7 @@ export default function InvestorDiscover() {
                         <div>
                           <Link to={`/investor/founder/${s.id}`} data-cursor="hover"><h3 className="font-display text-xl text-bone tracking-crush hover:text-acid transition-colors">{s.name}</h3></Link>
                           <p className="text-[11px] text-bone2">{s.industry} · {s.stage} · {s.location}</p>
+                          <p className="text-[11px] text-bone2/80 mt-0.5">{s.revenueBand} rev · {s.teamSize} team · {s.funding}</p>
                         </div>
                       </div>
                       <div className="text-center shrink-0"><span className="font-display text-2xl text-acid leading-none">{s.readiness}</span><span className="block text-[10px] text-bone2">READY</span></div>

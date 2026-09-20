@@ -64,6 +64,20 @@ export default function OpportunityDetail() {
               ))}
             </ol>
           </Card>
+
+          <Card className="p-7">
+            <h2 className="font-display text-xl text-bone tracking-crush mb-4">About the organizer</h2>
+            <div className="flex items-start gap-4">
+              <img src={o.orgLogo} alt={o.org} className="h-12 w-12 rounded-xl bg-white object-contain p-2 shrink-0" />
+              <div>
+                <p className="text-bone font-medium">{o.org}</p>
+                <p className="text-xs text-bone2">{o.location}</p>
+                <p className="text-sm text-bone2 mt-2 max-w-md">
+                  {o.org} hosts this {o.type.toLowerCase()} through STUDLYF to discover and back strong builders. Winning work is reviewed by their team, and standout participants are fast-tracked for opportunities.
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* sticky apply rail */}

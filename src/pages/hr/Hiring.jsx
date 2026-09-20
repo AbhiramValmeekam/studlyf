@@ -12,6 +12,7 @@ const STAGES = [
   { key: 'shortlisted', label: 'Shortlisted' },
   { key: 'invited', label: 'Invited' },
   { key: 'accepted', label: 'Accepted' },
+  { key: 'scheduled', label: 'Meeting Scheduled' },
   { key: 'interview', label: 'Interview' },
   { key: 'selected', label: 'Selected' },
   { key: 'offer', label: 'Offer Letter' },

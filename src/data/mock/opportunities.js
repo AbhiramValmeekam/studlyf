@@ -1,7 +1,7 @@
 // Mock opportunities for the Builder ecosystem. Logo images reuse scraped assets.
 const IMG = '/scraped'
 
-export const OPP_TYPES = ['Hackathon', 'Competition', 'Internship', 'Job', 'Challenge', 'Fellowship']
+export const OPP_TYPES = ['Hackathon', 'Competition', 'Internship', 'Job', 'Challenge', 'Fellowship', 'Other']
 export const OPP_SKILLS = ['React', 'Node.js', 'Python', 'ML', 'UI/UX', 'Solidity', 'Data', 'Cloud', 'Go', 'Flutter']
 export const OPP_MODES = ['Remote', 'On-site', 'Hybrid']
 
@@ -155,6 +155,31 @@ export const opportunities = [
       { label: 'Data release', date: 'Oct 4' },
       { label: 'Final submissions', date: 'Oct 25' },
       { label: 'Winners', date: 'Oct 30' },
+    ],
+    recommended: false,
+  },
+  {
+    id: 'open-source-grant-orbit',
+    title: 'Orbit Open-Source Grant',
+    org: 'Orbit Foundation',
+    orgLogo: `${IMG}/s20_microsoft.webp`,
+    type: 'Other',
+    mode: 'Remote',
+    location: 'Remote',
+    deadline: '2026-11-15',
+    duration: 'Rolling',
+    prize: '₹2,00,000 grant',
+    skills: ['Go', 'Python', 'Cloud'],
+    tags: ['Rolling', 'Grant'],
+    eligibility: 'Maintainers or contributors of an active open-source project.',
+    about:
+      'A no-strings grant for students maintaining open-source developer tools. Funds your time to ship features, docs and releases the community depends on.',
+    benefits: ['₹2L grant', 'Mentor pairing', 'Conference travel', 'Maintainer network'],
+    rules: ['Public repository with an OSI license', 'Monthly progress note', 'Grant used for the project'],
+    timeline: [
+      { label: 'Applications open', date: 'Rolling' },
+      { label: 'Review', date: '2 weeks' },
+      { label: 'Grant disbursed', date: 'On approval' },
     ],
     recommended: false,
   },

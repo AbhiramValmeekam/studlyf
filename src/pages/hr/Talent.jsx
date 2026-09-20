@@ -1,6 +1,10 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { candidates, ROLES, SKILLS, LOCATIONS, AVAILABILITY } from '../../data/mock/talent'
+import {
+  candidates, ROLES, SKILLS, LOCATIONS, AVAILABILITY,
+  EXPERIENCE, GITHUB_ACTIVITY, EVAL_BANDS, HACKATHON_BANDS,
+  evalBand, hackathonBand,
+} from '../../data/mock/talent'
 import { useSession } from '../../context/SessionContext'
 import { Card, Tag, Button, Avatar, PageTitle, EmptyState } from '../../components/ui/primitives'
 import { FilterBar } from '../../components/ui/FilterBar'
@@ -10,7 +14,13 @@ const GROUPS = [
   { key: 'skills', label: 'Skills', options: SKILLS },
   { key: 'location', label: 'Location', options: LOCATIONS },
   { key: 'availability', label: 'Availability', options: AVAILABILITY },
+  { key: 'experience', label: 'Experience', options: EXPERIENCE },
+  { key: 'github', label: 'GitHub activity', options: GITHUB_ACTIVITY },
+  { key: 'evaluation', label: 'Project evaluation', options: EVAL_BANDS },
+  { key: 'hackathons', label: 'Hackathons', options: HACKATHON_BANDS },
 ]
+
+const EMPTY = { role: [], skills: [], location: [], availability: [], experience: [], github: [], evaluation: [], hackathons: [] }
 
 /**
  * HR Talent Discovery — filter builders by role, skills, location, availability
@@ -19,11 +29,11 @@ const GROUPS = [
 export default function HrTalent() {
   const { shortlist, toggleShortlist } = useSession()
   const [query, setQuery] = useState('')
-  const [selected, setSelected] = useState({ role: [], skills: [], location: [], availability: [] })
+  const [selected, setSelected] = useState(EMPTY)
 
   const toggle = (key, opt) =>
     setSelected((s) => ({ ...s, [key]: s[key].includes(opt) ? s[key].filter((v) => v !== opt) : [...s[key], opt] }))
-  const clear = () => setSelected({ role: [], skills: [], location: [], availability: [] })
+  const clear = () => setSelected(EMPTY)
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -33,6 +43,10 @@ export default function HrTalent() {
       if (selected.location.length && !selected.location.includes(c.location)) return false
       if (selected.availability.length && !selected.availability.includes(c.availability)) return false
       if (selected.skills.length && !selected.skills.some((s) => c.skills.includes(s))) return false
+      if (selected.experience.length && !selected.experience.includes(c.experience)) return false
+      if (selected.github.length && !selected.github.includes(c.githubActivity)) return false
+      if (selected.evaluation.length && !selected.evaluation.includes(evalBand(c.topEvaluation))) return false
+      if (selected.hackathons.length && !selected.hackathons.includes(hackathonBand(c.hackathons))) return false
       return true
     })
   }, [query, selected])
