@@ -1,0 +1,28 @@
+{
+  "name": "studlyf",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.14",
+    "matter-js": "^0.20.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "playwright-core": "^1.63.0",
+    "postcss": "^8.4.41",
+    "puppeteer-core": "^23.11.1",
+    "tailwindcss": "^3.4.13",
+    "vite": "^5.4.8"
+  }
+}

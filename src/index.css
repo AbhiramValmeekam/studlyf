@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   STUDLYF — DESIGN SYSTEM
+   tokens: color · type · space · radius · motion
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  /* Neutrals as space-separated RGB channels so Tailwind can apply opacity:
+     rgb(var(--ink) / <alpha-value>). The `.light` block below flips them. */
+  --ink: 10 10 11; /* #0A0A0B */
+  --ink-2: 17 17 19; /* #111113 */
+  --bone: 239 234 224; /* #EFEAE0 */
+  --bone-2: 201 196 184; /* #C9C4B8 */
+
+  /* Full-color forms for raw use in CSS/JS (charts, rings, gradients). */
+  --ink-c: rgb(var(--ink));
+  --bone-c: rgb(var(--bone));
+  --acid: #c7f24e;
+  --flare: #ff4a28;
+  --violet: #6c4bff;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur: 0.8s;
+
+  --gutter: clamp(1.25rem, 4vw, 5rem);
+}
+
+/* ---------- Light theme ---------- */
+/* Flip only the neutrals: ink (was near-black bg) becomes warm off-white,
+   bone (was off-white fg) becomes near-black ink. Every bg-ink / text-bone /
+   border-bone in the app inverts coherently with no markup changes. */
+html.light {
+  color-scheme: light;
+  --ink: 245 241 232; /* warm paper #F5F1E8 */
+  --ink-2: 255 253 248; /* raised surface #FFFDF8 */
+  --bone: 20 20 24; /* primary text #141418 */
+  --bone-2: 91 88 82; /* muted text #5B5852 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--ink));
+  color: rgb(var(--bone));
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: var(--acid);
+  color: rgb(var(--ink));
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- display type ---------- */
+.font-display {
+  font-family: 'Anton', Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.serif-i {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* fluid display sizes */
+.d-hero {
+  font-size: clamp(2.75rem, 11vw, 9.5rem);
+}
+.d-1 {
+  font-size: clamp(2.75rem, 9vw, 9rem);
+  line-height: 1.05;
+}
+.d-2 {
+  font-size: clamp(2rem, 6vw, 5.5rem);
+  line-height: 1.05;
+}
+.giant-num {
+  font-size: clamp(4rem, 18vw, 18rem);
+}
+
+/* ---------- utilities ---------- */
+.gutter {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: rgb(var(--bone) / 0.16);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* reveal masks (used by JS, but safe fallback) */
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+.line-inner {
+  display: block;
+  will-change: transform;
+}
+
+/* gradient headline word — matches studlyf.in (violet → pink → coral) */
+.grad-text {
+  background-image: linear-gradient(
+    to right in oklab,
+    var(--violet) 0%,
+    #ec4899 50%,
+    var(--flare) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* mentor constellation — floating logo bubbles */
+.bubble {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 10px 30px -8px rgba(20, 20, 30, 0.18), 0 2px 8px -2px rgba(20, 20, 30, 0.12);
+  will-change: transform;
+}
+@keyframes bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+.bob {
+  animation: bob 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bob { animation: none; }
+}
+
+/* rotating hero word — its own clip box so slides stay contained,
+   with breathing room top/bottom so descenders (g, y) never clip */
+.rot-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.12em 0.04em 0.18em;
+  margin: -0.12em -0.04em -0.18em;
+}
+.rot-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* char-flip nav links — explicit height so the clone is clipped */
+.charflip {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 1.2em;
+  line-height: 1.2;
+  vertical-align: bottom;
+}
+.charflip .cf-line {
+  display: block;
+  transition: transform 0.45s var(--ease);
+}
+.charflip .cf-clone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(100%);
+}
+.charflip:hover .cf-line {
+  transform: translateY(-100%);
+}
+.charflip:hover .cf-clone {
+  transform: translateY(0%);
+}
+
+/* magnetic + link underline */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  body {
+    cursor: auto;
+  }
+}

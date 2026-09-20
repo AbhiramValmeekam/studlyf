@@ -1,0 +1,1674 @@
+{
+  "title": "The Standard | Engineering Readiness",
+  "metaDescription": "",
+  "headings": [
+    "Learn",
+    "by doing",
+    "wait, what is",
+    "Company-Specific Learning Paths",
+    "Steve Jobs",
+    "Elon Musk",
+    "Bill Gates",
+    "Warren Buffett",
+    "Sundar Pichai",
+    "Satya Nadella",
+    "Mark Zuckerberg",
+    "Jeff Bezos",
+    "Jensen Huang",
+    "Tim Cook",
+    "Indra Nooyi",
+    "Reid Hoffman",
+    "Steve Jobs",
+    "Elon Musk",
+    "Bill Gates",
+    "Warren Buffett",
+    "Sundar Pichai",
+    "Satya Nadella",
+    "Mark Zuckerberg",
+    "Jeff Bezos",
+    "Jensen Huang",
+    "Tim Cook",
+    "Indra Nooyi",
+    "Reid Hoffman",
+    "Steve Jobs",
+    "Elon Musk",
+    "Bill Gates",
+    "Warren Buffett",
+    "Sundar Pichai",
+    "Satya Nadella",
+    "Mark Zuckerberg",
+    "Jeff Bezos",
+    "Jensen Huang",
+    "Tim Cook",
+    "Indra Nooyi",
+    "Reid Hoffman",
+    "THE ERA OF HUMAN AUTHORITY",
+    "OLD WAY",
+    "NEW WAY",
+    "Old Way",
+    "New Way",
+    "OUR MENTORS ARE FROM 50+ MNCS",
+    "WHO WE SERVE",
+    "FOR",
+    "Master Your Path",
+    "Discover",
+    "Learn",
+    "Practice",
+    "Launch",
+    "Excel",
+    "Discover",
+    "Learn",
+    "Practice",
+    "Launch",
+    "Excel",
+    "FAQ",
+    "Everything you need to know.",
+    "FEATURED INSTITUTIONS",
+    "TRUSTED BY PEOPLE FROM",
+    "OUR IMPACT",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "Seehowlearnerslikeyoulanded jobs,builtskills,andchangedtheir lives.",
+    "Pantham Bhavya",
+    "Vadla Sudhasri",
+    "Ginuguntla Likhitha",
+    "Sajja Dhruwallika",
+    "Modaboina Tejaswi",
+    "Vishnu Vardhan",
+    "Vivek Goud Adula",
+    "Purushotham",
+    "Anusha Goud",
+    "Kiran Kumar",
+    "Pantham Bhavya",
+    "Vadla Sudhasri",
+    "Ginuguntla Likhitha",
+    "Sajja Dhruwallika",
+    "Modaboina Tejaswi",
+    "Vishnu Vardhan",
+    "Vivek Goud Adula",
+    "Purushotham",
+    "Anusha Goud",
+    "Kiran Kumar",
+    "Stay ahead of what's Next.",
+    "Elm Partners with Studlyf to Build a Graduate Development Program",
+    "Generative AI Leadership Playbook",
+    "Studlyf's Data Empowerment Initiative at Siemens",
+    "What AI Agents can and can not do",
+    "How Agentic AI works: MCP explained",
+    "2025 State of AI at work report",
+    "Let's Get To Know Each Other",
+    "CONTACT US"
+  ],
+  "taglines": [
+    {
+      "text": "Learn",
+      "tag": "h1",
+      "size": 140
+    },
+    {
+      "text": "by doing",
+      "tag": "h1",
+      "size": 140
+    },
+    {
+      "text": "wait, what is",
+      "tag": "h3",
+      "size": 60
+    },
+    {
+      "text": "Company-Specific Learning Paths",
+      "tag": "h4",
+      "size": 36
+    },
+    {
+      "text": "Steve Jobs",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Elon Musk",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Bill Gates",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Warren Buffett",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Sundar Pichai",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Satya Nadella",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Mark Zuckerberg",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Jeff Bezos",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Jensen Huang",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Tim Cook",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Indra Nooyi",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Reid Hoffman",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "THE ERA OF HUMAN AUTHORITY",
+      "tag": "h2",
+      "size": 60
+    },
+    {
+      "text": "OLD WAY",
+      "tag": "h3",
+      "size": 20
+    },
+    {
+      "text": "NEW WAY",
+      "tag": "h3",
+      "size": 20
+    },
+    {
+      "text": "OUR MENTORS ARE FROM 50+ MNCS",
+      "tag": "h2",
+      "size": 72
+    },
+    {
+      "text": "WHO WE SERVE",
+      "tag": "h2",
+      "size": 72
+    },
+    {
+      "text": "FOR",
+      "tag": "h3",
+      "size": 48
+    },
+    {
+      "text": "Master Your Path",
+      "tag": "h2",
+      "size": 60
+    },
+    {
+      "text": "Discover",
+      "tag": "h3",
+      "size": 18
+    },
+    {
+      "text": "Practice",
+      "tag": "h3",
+      "size": 18
+    },
+    {
+      "text": "Launch",
+      "tag": "h3",
+      "size": 18
+    },
+    {
+      "text": "Excel",
+      "tag": "h3",
+      "size": 18
+    },
+    {
+      "text": "FAQ",
+      "tag": "h2",
+      "size": 10
+    },
+    {
+      "text": "Everything you need to know.",
+      "tag": "h3",
+      "size": 36
+    },
+    {
+      "text": "FEATURED INSTITUTIONS",
+      "tag": "h2",
+      "size": 48
+    },
+    {
+      "text": "TRUSTED BY PEOPLE FROM",
+      "tag": "h2",
+      "size": 48
+    },
+    {
+      "text": "OUR IMPACT",
+      "tag": "h2",
+      "size": 72
+    },
+    {
+      "text": "Seehowlearnerslikeyoulanded jobs,builtskills,andchangedtheir lives.",
+      "tag": "h2",
+      "size": 36
+    },
+    {
+      "text": "Pantham Bhavya",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Vadla Sudhasri",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Ginuguntla Likhitha",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Sajja Dhruwallika",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Modaboina Tejaswi",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Vishnu Vardhan",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Vivek Goud Adula",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Purushotham",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Anusha Goud",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Kiran Kumar",
+      "tag": "h4",
+      "size": 20
+    },
+    {
+      "text": "Stay ahead of what's Next.",
+      "tag": "h2",
+      "size": 48
+    },
+    {
+      "text": "Elm Partners with Studlyf to Build a Graduate Development Program",
+      "tag": "h3",
+      "size": 24
+    },
+    {
+      "text": "Generative AI Leadership Playbook",
+      "tag": "h3",
+      "size": 24
+    },
+    {
+      "text": "Studlyf's Data Empowerment Initiative at Siemens",
+      "tag": "h3",
+      "size": 24
+    },
+    {
+      "text": "What AI Agents can and can not do",
+      "tag": "h3",
+      "size": 24
+    },
+    {
+      "text": "How Agentic AI works: MCP explained",
+      "tag": "h3",
+      "size": 24
+    },
+    {
+      "text": "2025 State of AI at work report",
+      "tag": "h3",
+      "size": 24
+    },
+    {
+      "text": "Let's Get To Know Each Other",
+      "tag": "h2",
+      "size": 48
+    },
+    {
+      "text": "CONTACT US",
+      "tag": "h2",
+      "size": 48
+    },
+    {
+      "text": "Sign in",
+      "tag": "button",
+      "size": 16
+    },
+    {
+      "text": "71%",
+      "tag": "div",
+      "size": 11
+    },
+    {
+      "text": "by",
+      "tag": "span",
+      "size": 140
+    },
+    {
+      "text": "doing",
+      "tag": "span",
+      "size": 140
+    },
+    {
+      "text": "For Students",
+      "tag": "span",
+      "size": 17
+    },
+    {
+      "text": "Post An Oppurtunity",
+      "tag": "span",
+      "size": 17
+    },
+    {
+      "text": "JOBS",
+      "tag": "button",
+      "size": 12
+    },
+    {
+      "text": "SAY HELLO TO LATEST LEARNING",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "01",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Learning Paths",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "02",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Mock Interview",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "03",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Career Dreamer",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "04",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Placement Ecosystem",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Studlyf Experience",
+      "tag": "span",
+      "size": 12
+    },
+    {
+      "text": "Master placement preparation through structured learning modules tailored for top companies like Google, Amazon, and Microsoft.",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "\"The only way to do great work is to love what you do. Don't settle. Keep looking.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Co-founder, Apple Inc.",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"Persistence is very important. You should not give up unless you are forced to give up.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "CEO, Tesla & SpaceX",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"Your most unhappy customers are your greatest source of learning. Success is a lousy teacher.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Co-founder, Microsoft",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"The most important investment you can make is in yourself. Knowledge builds up like interest.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "CEO, Berkshire Hathaway",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"Wear your failure as a badge of honor. It's the only way to truly innovate and grow.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "CEO, Google & Alphabet",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"You've got to be a lifelong learner. Curiosity is your greatest asset in this era.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "CEO, Microsoft",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"The biggest risk is not taking any risk. Move fast and break things to find what works.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Founder & CEO, Meta",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"I knew that if I failed I wouldn't regret that, but I knew I might regret not trying.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Founder, Amazon",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"Software is eating the world, but AI is going to eat software. Never stop being a student.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Founder & CEO, NVIDIA",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"The sidelines are not where you want to live your life. The world needs you in the arena.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "CEO, Apple Inc.",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"An important attribute of success is to be yourself. Never hide what makes you unique.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Former CEO, PepsiCo",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "\"No matter how brilliant your mind, if you’re playing a solo game, you’ll lose to a team.\"",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "Co-founder, LinkedIn",
+      "tag": "p",
+      "size": 11
+    },
+    {
+      "text": "From outdated methods to intelligent, outcome-driven learning.",
+      "tag": "p",
+      "size": 20
+    },
+    {
+      "text": "Syntax Memorization",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Passive Watching",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Theory Over Practice",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "One-size-fits-all",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "No Real Feedback",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Practical Problem Solving",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Active Hands-on Learning",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Career-Focused Paths",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Personalized Skill Mapping",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "AI-Guided Feedback",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "50+ MNCS",
+      "tag": "span",
+      "size": 72
+    },
+    {
+      "text": "Guided by professionals shaping the world's leading organizations.",
+      "tag": "p",
+      "size": 20
+    },
+    {
+      "text": "SERVE",
+      "tag": "span",
+      "size": 72
+    },
+    {
+      "text": "STARTUPS",
+      "tag": "span",
+      "size": 18
+    },
+    {
+      "text": "BUILD JOB-READY ENGINEERING TALENT",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "UPSKILL TEAMS WITH HANDS-ON TECH TRAINING",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "AI-POWERED ASSESSMENT & HIRING SUPPORT",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "LEARN MORE",
+      "tag": "span",
+      "size": 11
+    },
+    {
+      "text": "STUDENTS",
+      "tag": "span",
+      "size": 18
+    },
+    {
+      "text": "LEARN BY BUILDING REAL-WORLD PROJECTS",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "CAREER-FOCUSED ROADMAPS & MENTORSHIP",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "MOCK INTERVIEWS & AI FEEDBACK SYSTEM",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "INSTITUTIONS",
+      "tag": "span",
+      "size": 18
+    },
+    {
+      "text": "INDUSTRY-ALIGNED CURRICULUM INTEGRATION",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "LIVE PRACTICE & PROJECT-BASED MODULES",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "PLACEMENT-DRIVEN LEARNING ECOSYSTEM",
+      "tag": "span",
+      "size": 13
+    },
+    {
+      "text": "Path",
+      "tag": "span",
+      "size": 60
+    },
+    {
+      "text": "Your journey to career excellence, defined by standards.",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Explore career paths.",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "Structured modules.",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "Hands-on projects.",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "Job readiness.",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "05",
+      "tag": "span",
+      "size": 12
+    },
+    {
+      "text": "Lead and inspire.",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "What is STUDLYF and how is it different?",
+      "tag": "div",
+      "size": 16
+    },
+    {
+      "text": "STUDLYF is a student-first ecosystem built to help ambitious students learn, bui...",
+      "tag": "div",
+      "size": 12
+    },
+    {
+      "text": "What kind of opportunities does STUDLYF provide?",
+      "tag": "div",
+      "size": 16
+    },
+    {
+      "text": "Students get access to workshops, hackathons, mentorship, startup exposure, coll...",
+      "tag": "div",
+      "size": 12
+    },
+    {
+      "text": "Is STUDLYF only for tech students?",
+      "tag": "div",
+      "size": 16
+    },
+    {
+      "text": "No. STUDLYF is built for ambitious students from different domains who want to l...",
+      "tag": "div",
+      "size": 12
+    },
+    {
+      "text": "How can students grow through STUDLYF?",
+      "tag": "div",
+      "size": 16
+    },
+    {
+      "text": "Students can participate in communities, collaborate on projects, attend events,...",
+      "tag": "div",
+      "size": 12
+    },
+    {
+      "text": "How can I join the STUDLYF ecosystem?",
+      "tag": "div",
+      "size": 16
+    },
+    {
+      "text": "You can join by becoming part of the community, attending events, participating ...",
+      "tag": "div",
+      "size": 12
+    },
+    {
+      "text": "CONNECT WITH THE STUDLYF TEAM.",
+      "tag": "a",
+      "size": 10
+    },
+    {
+      "text": "STUDLYF learners come from strong colleges, universities, and institutions.",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "PEOPLE FROM",
+      "tag": "span",
+      "size": 48
+    },
+    {
+      "text": "Learners, professionals, and aspirants from leading companies, institutions, and ecosystems grow with STUDLYF.",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "GUIDE",
+      "tag": "div",
+      "size": 14
+    },
+    {
+      "text": "IMPACT",
+      "tag": "span",
+      "size": 72
+    },
+    {
+      "text": "Creating a global ecosystem where engineering skills meet real-world opportunities.",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "STRONG COMMUNITY",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "STUDENTS REACHED",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "COLLEGES PARTNERED",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "Lakh +",
+      "tag": "span",
+      "size": 30
+    },
+    {
+      "text": "MEDIA REACH",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "STARTUP HIRING PARTNERS",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "See",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "how",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "learners",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "like",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "you",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "landed",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "jobs,",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "built",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "skills,",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "and",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "changed",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "their",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "lives.",
+      "tag": "span",
+      "size": 36
+    },
+    {
+      "text": "\"The sessions felt practical and easy to follow, and I could see my confidence grow with every project.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "UI / UX DESIGN",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"The guidance was consistent and the doubt-clearing support made the learning experience very smooth.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "JAVA FULL STACK",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"I liked how the classes mixed concepts with hands-on work. It made every topic easy to understand.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "DATA ANALYTICS",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"The platform and mentor support helped me stay consistent and finish projects with confidence.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "CLOUD COMPUTING",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"The training style was simple, effective, and very motivating. I could actually apply what I learned.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "AI / ML",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"The training and project exposure here are top-notch. Trainer is really helpful and clearing the doubts till course end!\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "WEB DEVELOPMENT",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"Training and doubt clarification were excellent. Mic access during class would help clear doubts more effectively.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "AI ENGINEER",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"Rakesh is teaching very well, patiently clearing every doubt. I also learned communication skills from him.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "SERVICENOW",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"The curriculum is very industry-aligned. I feel much more confident in my coding skills now.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "FULL STACK DEVELOPMENT",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "\"Excellent hands-on labs. The mentors really know their stuff and guide us through complex scenarios.\"",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "CYBER SECURITY",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "RESOURCE CENTRE",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Research and insights from tech experts and thought leaders so you're always on top of tech's latest trends",
+      "tag": "p",
+      "size": 16
+    },
+    {
+      "text": "CASE STUDY",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "How modern graduate development programs are redesigned using rapid feedback systems and experiential learning.",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "READ MORE",
+      "tag": "button",
+      "size": 10
+    },
+    {
+      "text": "REPORT",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "Strategic frameworks and tactical steps for product teams adopting AI-powered workflows.",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "Transforming how engineering teams make data-driven decisions through contextual collaboration.",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "WEBINAR",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "A definitive guide cutting through the noise surrounding agentic workflows and capabilities.",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "A deep dive into the underlying architecture of modern agent orchestration.",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "MEDIA",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "A comprehensive snapshot covering AI adoption, skills demand, and workplace transformation.",
+      "tag": "p",
+      "size": 14
+    },
+    {
+      "text": "EXPLORE",
+      "tag": "span",
+      "size": 14
+    },
+    {
+      "text": "Elevate your vision with our AI-driven expertise.",
+      "tag": "p",
+      "size": 18
+    },
+    {
+      "text": "Secured by Human Verification",
+      "tag": "span",
+      "size": 12
+    },
+    {
+      "text": "Submit Inquiry",
+      "tag": "span",
+      "size": 16
+    },
+    {
+      "text": "CONNECT WITH FOUNDER",
+      "tag": "p",
+      "size": 10
+    },
+    {
+      "text": "EMAIL",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "WHATSAPP",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "INSTAGRAM",
+      "tag": "span",
+      "size": 9
+    },
+    {
+      "text": "CONTACT US ANYTIME, WE ARE HERE TO HELP.",
+      "tag": "p",
+      "size": 10
+    },
+    {
+      "text": "Empowering the next generation of engineers with AI-driven career tools and resources.",
+      "tag": "p",
+      "size": 12
+    },
+    {
+      "text": "COURSES",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "COMPANY MODULES",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "BLOGS",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "PORTFOLIO",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "RESUME",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "SKILLS ASSIGNMENT",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "INTERVIEWS",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "PROJECT",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "AI TOOLS",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "ABOUT APPLICATION",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "RESOURCES",
+      "tag": "a",
+      "size": 11
+    },
+    {
+      "text": "© 2026 STUDLYF • ALL RIGHTS RESERVED",
+      "tag": "p",
+      "size": 10
+    }
+  ],
+  "imgTags": [
+    "https://studlyf.in/images-optimized/studlyf_secondary.webp",
+    "https://studlyf.in/images-optimized/studlyf.webp",
+    "https://studlyf.in/images/company-paths.png",
+    "https://www.usmagazine.com/wp-content/uploads/backup/steve-jobs-92a047e4-7791-45f6-a8b9-d4d24a376dd2.jpg?w=1000&quality=86&strip=all",
+    "https://studlyf.in/images/elon-musk.jpg",
+    "https://studlyf.in/images/bill-gates.jpg",
+    "https://studlyf.in/images/warren-buffett.jpg",
+    "https://www.vikasjoshi.in/wp-content/uploads/2023/11/Sundarpichai.jpg",
+    "https://www.entrepreneur.com/wp-content/uploads/sites/2/2026/02/Satya-Nadella-GettyImages-2256635134.jpg",
+    "https://www.newtraderu.com/wp-content/uploads/Current-Mark-Zuckerberg-Net-Worth-2024.jpg",
+    "https://people.com/thmb/E5SM0jiDVLG-Dj_Lpw2hRMgN_tI=/4000x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/jeff-bezos-1-921922c6cdc6442397a7f0dcd8bd0370.jpg",
+    "https://studlyf.in/images/jensen-huang.jpg",
+    "https://bsmedia.business-standard.com/_media/bs/img/article/2023-05/05/full/1683250404-5715.jpg",
+    "https://tse2.mm.bing.net/th/id/OIP.XfO7bgtTIoIEHh_S_3PzUgHaJ3?w=1600&h=2131&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "https://facts.net/wp-content/uploads/2024/10/40-facts-about-reid-hoffman-1728495269.jpg",
+    "https://studlyf.in/images-optimized/google.webp",
+    "https://studlyf.in/images-optimized/uber.webp",
+    "https://studlyf.in/images-optimized/adobe.webp",
+    "https://studlyf.in/images-optimized/airbnb.webp",
+    "https://studlyf.in/images-optimized/intel.webp",
+    "https://studlyf.in/images-optimized/microsoft.webp",
+    "https://studlyf.in/images-optimized/ibm.webp",
+    "https://studlyf.in/images-optimized/oracle.webp",
+    "https://studlyf.in/images-optimized/amazon.webp",
+    "https://studlyf.in/images-optimized/apple.webp",
+    "https://studlyf.in/images-optimized/infosys.webp",
+    "https://studlyf.in/images-optimized/tesla.webp",
+    "https://studlyf.in/images-optimized/linkedin.webp",
+    "https://studlyf.in/images-optimized/nvidia.webp",
+    "https://studlyf.in/images-optimized/meta.webp",
+    "https://studlyf.in/images-optimized/wipro.webp",
+    "https://studlyf.in/images-optimized/salesforce.webp",
+    "https://studlyf.in/images-optimized/netflix.webp",
+    "https://studlyf.in/images-optimized/stripe.webp",
+    "https://studlyf.in/images-optimized/flipkart.webp",
+    "https://studlyf.in/images-optimized/paypal.webp",
+    "https://studlyf.in/images-optimized/tcs.webp",
+    "https://studlyf.in/images-optimized/accenture.webp",
+    "https://studlyf.in/images-optimized/jpmorgan.webp",
+    "https://studlyf.in/images-optimized/goldman-sachs.webp",
+    "https://studlyf.in/images-optimized/woxen.webp",
+    "https://studlyf.in/images-optimized/vjim.webp",
+    "https://studlyf.in/images-optimized/vishnu.webp",
+    "https://studlyf.in/images-optimized/srm.webp",
+    "https://studlyf.in/images-optimized/mru.webp",
+    "https://studlyf.in/images-optimized/iitm.webp",
+    "https://studlyf.in/images-optimized/iit%20k.webp",
+    "https://studlyf.in/images-optimized/iit%20h.webp",
+    "https://studlyf.in/images-optimized/iit-delhi.webp",
+    "https://studlyf.in/images-optimized/iit-bombay.webp",
+    "https://studlyf.in/images-optimized/iim%20k.webp",
+    "https://studlyf.in/images-optimized/griet.webp",
+    "https://studlyf.in/images-optimized/cmr.webp",
+    "https://studlyf.in/images-optimized/cbit.webp",
+    "https://studlyf.in/images-optimized/bits.webp",
+    "https://studlyf.in/images-optimized/anuraguni.webp",
+    "https://studlyf.in/images-optimized/angel%20one.webp",
+    "https://studlyf.in/images-optimized/aol.webp",
+    "https://studlyf.in/images-optimized/bajaj.webp",
+    "https://studlyf.in/images-optimized/iim%20b.webp",
+    "https://studlyf.in/images-optimized/isb.webp",
+    "https://studlyf.in/images-optimized/isha.webp",
+    "https://studlyf.in/images-optimized/lic.webp",
+    "https://studlyf.in/images-optimized/optum.webp",
+    "https://studlyf.in/images-optimized/stanford.webp",
+    "https://studlyf.in/images-optimized/wharton.webp",
+    "https://studlyf.in/images-optimized/impact/hackathon.webp",
+    "https://studlyf.in/images-optimized/impact/mentorship.webp",
+    "https://studlyf.in/images-optimized/impact/certificates.webp",
+    "https://studlyf.in/images-optimized/impact/online_sessions.webp",
+    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1620712943543-bcc4628c9757?auto=format&fit=crop&q=80&w=1400",
+    "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200",
+    "https://studlyf.in/images/Eshwar.jpg"
+  ],
+  "bgImages": [],
+  "savedImages": [
+    {
+      "name": "s01_studlyf_secondary.webp",
+      "url": "https://studlyf.in/images-optimized/studlyf_secondary.webp",
+      "size": 23010
+    },
+    {
+      "name": "s02_studlyf.webp",
+      "url": "https://studlyf.in/images-optimized/studlyf.webp",
+      "size": 14128
+    },
+    {
+      "name": "s03_company-paths.png",
+      "url": "https://studlyf.in/images/company-paths.png",
+      "size": 165385
+    },
+    {
+      "name": "s04_steve-jobs-92a047e4-7791-45f6-a8b9-d4d24a376dd2.jpg",
+      "url": "https://www.usmagazine.com/wp-content/uploads/backup/steve-jobs-92a047e4-7791-45f6-a8b9-d4d24a376dd2.jpg?w=1000&quality=86&strip=all",
+      "size": 161155
+    },
+    {
+      "name": "s05_elon-musk.jpg",
+      "url": "https://studlyf.in/images/elon-musk.jpg",
+      "size": 112771
+    },
+    {
+      "name": "s06_bill-gates.jpg",
+      "url": "https://studlyf.in/images/bill-gates.jpg",
+      "size": 274107
+    },
+    {
+      "name": "s07_warren-buffett.jpg",
+      "url": "https://studlyf.in/images/warren-buffett.jpg",
+      "size": 92049
+    },
+    {
+      "name": "s08_Sundarpichai.jpg",
+      "url": "https://www.vikasjoshi.in/wp-content/uploads/2023/11/Sundarpichai.jpg",
+      "size": 55769
+    },
+    {
+      "name": "s09_Satya-Nadella-GettyImages-2256635134.jpg",
+      "url": "https://www.entrepreneur.com/wp-content/uploads/sites/2/2026/02/Satya-Nadella-GettyImages-2256635134.jpg",
+      "size": 1291614
+    },
+    {
+      "name": "s10_Current-Mark-Zuckerberg-Net-Worth-2024.jpg",
+      "url": "https://www.newtraderu.com/wp-content/uploads/Current-Mark-Zuckerberg-Net-Worth-2024.jpg",
+      "size": 351107
+    },
+    {
+      "name": "s11_jeff-bezos-1-921922c6cdc6442397a7f0dcd8bd0370.jpg",
+      "url": "https://people.com/thmb/E5SM0jiDVLG-Dj_Lpw2hRMgN_tI=/4000x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/jeff-bezos-1-921922c6cdc6442397a7f0dcd8bd0370.jpg",
+      "size": 123947
+    },
+    {
+      "name": "s12_jensen-huang.jpg",
+      "url": "https://studlyf.in/images/jensen-huang.jpg",
+      "size": 91322
+    },
+    {
+      "name": "s13_1683250404-5715.jpg",
+      "url": "https://bsmedia.business-standard.com/_media/bs/img/article/2023-05/05/full/1683250404-5715.jpg",
+      "size": 357619
+    },
+    {
+      "name": "s14_40-facts-about-reid-hoffman-1728495269.jpg",
+      "url": "https://facts.net/wp-content/uploads/2024/10/40-facts-about-reid-hoffman-1728495269.jpg",
+      "size": 191671
+    },
+    {
+      "name": "s15_google.webp",
+      "url": "https://studlyf.in/images-optimized/google.webp",
+      "size": 61382
+    },
+    {
+      "name": "s16_uber.webp",
+      "url": "https://studlyf.in/images-optimized/uber.webp",
+      "size": 52372
+    },
+    {
+      "name": "s17_adobe.webp",
+      "url": "https://studlyf.in/images-optimized/adobe.webp",
+      "size": 17720
+    },
+    {
+      "name": "s18_airbnb.webp",
+      "url": "https://studlyf.in/images-optimized/airbnb.webp",
+      "size": 54858
+    },
+    {
+      "name": "s19_intel.webp",
+      "url": "https://studlyf.in/images-optimized/intel.webp",
+      "size": 150724
+    },
+    {
+      "name": "s20_microsoft.webp",
+      "url": "https://studlyf.in/images-optimized/microsoft.webp",
+      "size": 4078
+    },
+    {
+      "name": "s21_ibm.webp",
+      "url": "https://studlyf.in/images-optimized/ibm.webp",
+      "size": 39096
+    },
+    {
+      "name": "s22_oracle.webp",
+      "url": "https://studlyf.in/images-optimized/oracle.webp",
+      "size": 32334
+    },
+    {
+      "name": "s23_amazon.webp",
+      "url": "https://studlyf.in/images-optimized/amazon.webp",
+      "size": 12578
+    },
+    {
+      "name": "s24_apple.webp",
+      "url": "https://studlyf.in/images-optimized/apple.webp",
+      "size": 49874
+    },
+    {
+      "name": "s25_infosys.webp",
+      "url": "https://studlyf.in/images-optimized/infosys.webp",
+      "size": 34196
+    },
+    {
+      "name": "s26_tesla.webp",
+      "url": "https://studlyf.in/images-optimized/tesla.webp",
+      "size": 13644
+    },
+    {
+      "name": "s27_linkedin.webp",
+      "url": "https://studlyf.in/images-optimized/linkedin.webp",
+      "size": 26352
+    },
+    {
+      "name": "s28_nvidia.webp",
+      "url": "https://studlyf.in/images-optimized/nvidia.webp",
+      "size": 141430
+    },
+    {
+      "name": "s29_meta.webp",
+      "url": "https://studlyf.in/images-optimized/meta.webp",
+      "size": 5590
+    },
+    {
+      "name": "s30_wipro.webp",
+      "url": "https://studlyf.in/images-optimized/wipro.webp",
+      "size": 25504
+    },
+    {
+      "name": "s31_salesforce.webp",
+      "url": "https://studlyf.in/images-optimized/salesforce.webp",
+      "size": 48188
+    },
+    {
+      "name": "s32_netflix.webp",
+      "url": "https://studlyf.in/images-optimized/netflix.webp",
+      "size": 17538
+    },
+    {
+      "name": "s33_stripe.webp",
+      "url": "https://studlyf.in/images-optimized/stripe.webp",
+      "size": 8352
+    },
+    {
+      "name": "s34_flipkart.webp",
+      "url": "https://studlyf.in/images-optimized/flipkart.webp",
+      "size": 64624
+    },
+    {
+      "name": "s35_paypal.webp",
+      "url": "https://studlyf.in/images-optimized/paypal.webp",
+      "size": 30824
+    },
+    {
+      "name": "s36_tcs.webp",
+      "url": "https://studlyf.in/images-optimized/tcs.webp",
+      "size": 5052
+    },
+    {
+      "name": "s37_accenture.webp",
+      "url": "https://studlyf.in/images-optimized/accenture.webp",
+      "size": 4080
+    },
+    {
+      "name": "s38_jpmorgan.webp",
+      "url": "https://studlyf.in/images-optimized/jpmorgan.webp",
+      "size": 33602
+    },
+    {
+      "name": "s39_goldman-sachs.webp",
+      "url": "https://studlyf.in/images-optimized/goldman-sachs.webp",
+      "size": 26052
+    },
+    {
+      "name": "s40_woxen.webp",
+      "url": "https://studlyf.in/images-optimized/woxen.webp",
+      "size": 20706
+    },
+    {
+      "name": "s41_vjim.webp",
+      "url": "https://studlyf.in/images-optimized/vjim.webp",
+      "size": 76498
+    },
+    {
+      "name": "s42_vishnu.webp",
+      "url": "https://studlyf.in/images-optimized/vishnu.webp",
+      "size": 9040
+    },
+    {
+      "name": "s43_srm.webp",
+      "url": "https://studlyf.in/images-optimized/srm.webp",
+      "size": 10880
+    },
+    {
+      "name": "s44_mru.webp",
+      "url": "https://studlyf.in/images-optimized/mru.webp",
+      "size": 7770
+    },
+    {
+      "name": "s45_iitm.webp",
+      "url": "https://studlyf.in/images-optimized/iitm.webp",
+      "size": 53138
+    },
+    {
+      "name": "s46_iit_20k.webp",
+      "url": "https://studlyf.in/images-optimized/iit%20k.webp",
+      "size": 80228
+    },
+    {
+      "name": "s47_iit_20h.webp",
+      "url": "https://studlyf.in/images-optimized/iit%20h.webp",
+      "size": 9186
+    },
+    {
+      "name": "s48_iit-delhi.webp",
+      "url": "https://studlyf.in/images-optimized/iit-delhi.webp",
+      "size": 19204
+    },
+    {
+      "name": "s49_iit-bombay.webp",
+      "url": "https://studlyf.in/images-optimized/iit-bombay.webp",
+      "size": 26460
+    },
+    {
+      "name": "s50_iim_20k.webp",
+      "url": "https://studlyf.in/images-optimized/iim%20k.webp",
+      "size": 18894
+    },
+    {
+      "name": "s51_griet.webp",
+      "url": "https://studlyf.in/images-optimized/griet.webp",
+      "size": 3028
+    },
+    {
+      "name": "s52_cmr.webp",
+      "url": "https://studlyf.in/images-optimized/cmr.webp",
+      "size": 45522
+    },
+    {
+      "name": "s53_cbit.webp",
+      "url": "https://studlyf.in/images-optimized/cbit.webp",
+      "size": 74312
+    },
+    {
+      "name": "s54_bits.webp",
+      "url": "https://studlyf.in/images-optimized/bits.webp",
+      "size": 27586
+    },
+    {
+      "name": "s55_anuraguni.webp",
+      "url": "https://studlyf.in/images-optimized/anuraguni.webp",
+      "size": 28616
+    },
+    {
+      "name": "s56_angel_20one.webp",
+      "url": "https://studlyf.in/images-optimized/angel%20one.webp",
+      "size": 7714
+    },
+    {
+      "name": "s57_aol.webp",
+      "url": "https://studlyf.in/images-optimized/aol.webp",
+      "size": 3812
+    },
+    {
+      "name": "s58_bajaj.webp",
+      "url": "https://studlyf.in/images-optimized/bajaj.webp",
+      "size": 24148
+    },
+    {
+      "name": "s59_iim_20b.webp",
+      "url": "https://studlyf.in/images-optimized/iim%20b.webp",
+      "size": 13560
+    },
+    {
+      "name": "s60_isb.webp",
+      "url": "https://studlyf.in/images-optimized/isb.webp",
+      "size": 15494
+    },
+    {
+      "name": "s61_isha.webp",
+      "url": "https://studlyf.in/images-optimized/isha.webp",
+      "size": 7026
+    },
+    {
+      "name": "s62_lic.webp",
+      "url": "https://studlyf.in/images-optimized/lic.webp",
+      "size": 23264
+    },
+    {
+      "name": "s63_optum.webp",
+      "url": "https://studlyf.in/images-optimized/optum.webp",
+      "size": 31080
+    },
+    {
+      "name": "s64_stanford.webp",
+      "url": "https://studlyf.in/images-optimized/stanford.webp",
+      "size": 31842
+    },
+    {
+      "name": "s65_wharton.webp",
+      "url": "https://studlyf.in/images-optimized/wharton.webp",
+      "size": 48016
+    },
+    {
+      "name": "s66_hackathon.webp",
+      "url": "https://studlyf.in/images-optimized/impact/hackathon.webp",
+      "size": 98374
+    },
+    {
+      "name": "s67_mentorship.webp",
+      "url": "https://studlyf.in/images-optimized/impact/mentorship.webp",
+      "size": 79216
+    },
+    {
+      "name": "s68_certificates.webp",
+      "url": "https://studlyf.in/images-optimized/impact/certificates.webp",
+      "size": 73892
+    },
+    {
+      "name": "s69_online_sessions.webp",
+      "url": "https://studlyf.in/images-optimized/impact/online_sessions.webp",
+      "size": 93790
+    },
+    {
+      "name": "s70_photo-1517245386807-bb43f82c33c4",
+      "url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
+      "size": 116061
+    },
+    {
+      "name": "s71_photo-1677442136019-21780ecad995",
+      "url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200",
+      "size": 232684
+    },
+    {
+      "name": "s72_photo-1551288049-bebda4e38f71",
+      "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+      "size": 116517
+    },
+    {
+      "name": "s73_photo-1485827404703-89b55fcc595e",
+      "url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200",
+      "size": 90640
+    },
+    {
+      "name": "s75_photo-1531482615713-2afd69097998",
+      "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200",
+      "size": 150456
+    },
+    {
+      "name": "s76_Eshwar.jpg",
+      "url": "https://studlyf.in/images/Eshwar.jpg",
+      "size": 380619
+    },
+    {
+      "name": "s77_stud.png",
+      "url": "https://studlyf.in/stud.png",
+      "size": 53316
+    },
+    {
+      "name": "s78_Eshwar.webp",
+      "url": "https://studlyf.in/images-optimized/Eshwar.webp",
+      "size": 346194
+    }
+  ]
+}
