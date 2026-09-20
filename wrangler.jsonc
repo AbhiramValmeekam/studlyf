@@ -1,0 +1,14 @@
+{
+  // Deploy the built SPA as Cloudflare Workers Static Assets — no Worker script,
+  // no @cloudflare/vite-plugin, so this works on Vite 5 without upgrading.
+  // `npm run build` must run first (it produces ./dist); `wrangler deploy` uploads it.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "studlyf",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    // Serve index.html (HTTP 200) for unmatched routes so React Router deep
+    // links like /builder/opportunities resolve instead of 404ing.
+    "not_found_handling": "single-page-application"
+  }
+}
