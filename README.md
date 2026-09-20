@@ -15,7 +15,11 @@ npm run build    # production build → dist/
 npm run preview  # serve the built dist/
 ```
 
-**Deploying:** it's a client-routed SPA (React Router). Configure your host to fall back to `index.html` for unknown paths (Netlify `_redirects: /* /index.html 200`, Vercel rewrites, or equivalent) so deep links like `/builder/opportunities` resolve.
+**Deploying:** it's a client-routed SPA (React Router), so the host must fall back to `index.html` for unknown paths or deep links like `/builder/opportunities` will 404. Configs are included:
+
+- **Netlify** — `netlify.toml` (build `npm run build`, publish `dist`) + `public/_redirects`. Connect the repo; no extra setup.
+- **Vercel** — `vercel.json` (build command, output dir, SPA rewrite). Import the repo; framework preset "Vite".
+- **Any static host** — build with `npm run build`, serve `dist/`, and route all unknown paths to `index.html`.
 
 ---
 
