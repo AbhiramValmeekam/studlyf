@@ -15,15 +15,6 @@ export const NAV = {
       { to: '/builder/ott', label: 'STUD OTT' },
     ],
   },
-  organizer: {
-    label: 'Organizer',
-    accent: 'var(--flare)',
-    home: '/organizer',
-    items: [
-      { to: '/organizer', label: 'Events', end: true },
-      { to: '/organizer/events/hack-loop-2026', label: 'Manage Event' },
-    ],
-  },
   founder: {
     label: 'Startup',
     accent: 'var(--violet)',
@@ -54,13 +45,25 @@ export const NAV = {
     ],
   },
   hr: {
-    label: 'Talent',
+    label: 'HR · Talent',
     accent: 'var(--acid)',
     home: '/hr',
     items: [
       { to: '/hr', label: 'Overview', end: true },
       { to: '/hr/talent', label: 'Talent Discovery' },
       { to: '/hr/hiring', label: 'Hiring Pipeline' },
+    ],
+  },
+  // Organisation — evaluation platform for running hackathons/challenges with jury scoring
+  org: {
+    label: 'Organisation',
+    accent: 'var(--flare)',
+    home: '/org',
+    items: [
+      { to: '/org', label: 'Dashboard', end: true },
+      { to: '/org/events', label: 'My Events' },
+      { to: '/org/evaluate', label: 'Jury Evaluation' },
+      { to: '/org/leaderboard', label: 'Leaderboard' },
     ],
   },
 }
@@ -70,6 +73,6 @@ export const SWITCHER = [
   { role: 'builder', to: '/builder', label: 'Builder' },
   { role: 'founder', to: '/startup', label: 'Startup' },
   { role: 'investor', to: '/investor', label: 'Investor' },
-  { role: 'hr', to: '/hr', label: 'Talent' },
-  { role: 'organizer', to: '/organizer', label: 'Organizer' },
+  { role: 'hr', to: '/hr', label: 'HR' },
+  { role: 'org', to: '/org', label: 'Organisation' },
 ]

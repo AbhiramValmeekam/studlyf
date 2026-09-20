@@ -10,10 +10,11 @@ const AuthContext = createContext(null)
 // Human-friendly demo identities per role, reused across shells + topbars.
 const PROFILES = {
   builder: { name: 'Aarav Menon', handle: '@aaravbuilds', role: 'builder', title: 'CS Undergrad · Builder' },
-  organizer: { name: 'Devfolio Team', handle: '@devfolio', role: 'organizer', title: 'Event Organizer' },
   founder: { name: 'Ishita Rao', handle: '@ishitabuilds', role: 'founder', title: 'Founder · Loopwise' },
   investor: { name: 'Kabir Shah', handle: '@kabir.vc', role: 'investor', title: 'Partner · Northstar Capital' },
   hr: { name: 'Meera Iyer', handle: '@meera.talent', role: 'hr', title: 'Head of Talent · Cygnus' },
+  // Organization — runs hackathons/challenges and evaluates participants via the platform
+  org: { name: 'Priya Nambiar', handle: '@priya.orgs', role: 'org', title: 'Program Lead · TechOrg India' },
 }
 
 export function AuthProvider({ children }) {

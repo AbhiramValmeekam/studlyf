@@ -8,8 +8,8 @@ const ROLES = [
   { role: 'builder', to: '/builder', label: 'Builder', desc: 'Discover opportunities, build projects, get discovered.', accent: 'var(--acid)' },
   { role: 'founder', to: '/startup', label: 'Founder', desc: 'Shape your startup, sharpen readiness, meet investors.', accent: 'var(--violet)' },
   { role: 'investor', to: '/investor', label: 'Investor', desc: 'Verified access to discover and connect with founders.', accent: 'var(--acid)', gated: true },
-  { role: 'hr', to: '/hr', label: 'Organization / HR', desc: 'Paid access to discover builders by real evidence.', accent: 'var(--acid)', gated: true },
-  { role: 'organizer', to: '/organizer', label: 'Organizer', desc: 'Run hackathons, workshops and evaluations.', accent: 'var(--flare)' },
+  { role: 'hr', to: '/hr', label: 'HR · Talent', desc: 'Discover and shortlist student builders by real project evidence and evaluations.', accent: 'var(--acid)', gated: true },
+  { role: 'org', to: '/org', label: 'Organisation', desc: 'Run hackathons, challenges and evaluations. Participants submit — your juries score.', accent: 'var(--flare)', gated: true },
 ]
 
 /**

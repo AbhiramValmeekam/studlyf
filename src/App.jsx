@@ -21,10 +21,6 @@ import ResumeBuilder from './pages/builder/ResumeBuilder'
 import PortfolioBuilder from './pages/builder/PortfolioBuilder'
 import Roadmap from './pages/builder/Roadmap'
 
-// Organizer
-import OrganizerDashboard from './pages/organizer/Dashboard'
-import EventManage from './pages/organizer/EventManage'
-
 // Startup / Founder
 import FounderWorkspace from './pages/startup/Workspace'
 import FounderProfile from './pages/startup/FounderProfile'
@@ -44,6 +40,13 @@ import HrTalent from './pages/hr/Talent'
 import HrCandidate from './pages/hr/Candidate'
 import HrHiring from './pages/hr/Hiring'
 
+// Organisation — evaluation platform
+import OrgDashboard from './pages/org/Dashboard'
+import OrgEvents from './pages/org/Events'
+import OrgEventManage from './pages/org/EventManage'
+import OrgEvaluationRoom from './pages/org/EvaluationRoom'
+import OrgLeaderboard from './pages/org/Leaderboard'
+
 export default function App() {
   return (
     <>
@@ -56,6 +59,7 @@ export default function App() {
         <Route path="/login" element={<LoginHub />} />
         <Route path="/investor/login" element={<PortalLogin portal="investor" />} />
         <Route path="/hr/login" element={<PortalLogin portal="hr" />} />
+        <Route path="/org/login" element={<PortalLogin portal="org" />} />
 
         {/* Builder */}
         <Route element={<AppShell role="builder" />}>
@@ -70,12 +74,6 @@ export default function App() {
           <Route path="/builder/resume" element={<ResumeBuilder />} />
           <Route path="/builder/portfolio" element={<PortfolioBuilder />} />
           <Route path="/builder/roadmap" element={<Roadmap />} />
-        </Route>
-
-        {/* Organizer */}
-        <Route element={<AppShell role="organizer" />}>
-          <Route path="/organizer" element={<OrganizerDashboard />} />
-          <Route path="/organizer/events/:id" element={<EventManage />} />
         </Route>
 
         {/* Startup / Founder */}
@@ -97,13 +95,24 @@ export default function App() {
           </Route>
         </Route>
 
-        {/* HR — gated */}
+        {/* HR — gated: talent discovery + hiring pipeline */}
         <Route element={<ProtectedRoute loginPath="/hr/login" />}>
           <Route element={<AppShell role="hr" />}>
             <Route path="/hr" element={<HrOverview />} />
             <Route path="/hr/talent" element={<HrTalent />} />
             <Route path="/hr/candidate/:id" element={<HrCandidate />} />
             <Route path="/hr/hiring" element={<HrHiring />} />
+          </Route>
+        </Route>
+
+        {/* Organisation — gated: evaluation platform (hackathons, jury scoring, leaderboards) */}
+        <Route element={<ProtectedRoute loginPath="/org/login" />}>
+          <Route element={<AppShell role="org" />}>
+            <Route path="/org" element={<OrgDashboard />} />
+            <Route path="/org/events" element={<OrgEvents />} />
+            <Route path="/org/events/:id" element={<OrgEventManage />} />
+            <Route path="/org/evaluate/:id" element={<OrgEvaluationRoom />} />
+            <Route path="/org/leaderboard" element={<OrgLeaderboard />} />
           </Route>
         </Route>
 

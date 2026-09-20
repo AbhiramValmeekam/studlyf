@@ -15,11 +15,18 @@ const PORTALS = {
     accent: 'var(--acid)',
   },
   hr: {
-    title: 'Talent Platform',
-    blurb: 'Paid organizational access. Your workspace is provisioned after verification.',
-    steps: ['Approach STUDLYF', 'Org verification', 'Credentials issued', 'Login'],
+    title: 'HR · Talent Platform',
+    blurb: 'For HR teams at companies. Discover and shortlist verified student builders by real project evidence.',
+    steps: ['Approach STUDLYF', 'Company verification', 'Credentials issued', 'Login'],
     home: '/hr',
     accent: 'var(--acid)',
+  },
+  org: {
+    title: 'Organisation Portal',
+    blurb: 'Run hackathons, challenges and evaluations on the STUDLYF platform. Participants submit — your juries score.',
+    steps: ['Approach STUDLYF', 'Org verification', 'Credentials issued', 'Login'],
+    home: '/org',
+    accent: 'var(--flare)',
   },
 }
 
