@@ -173,11 +173,23 @@ rate-limit budgets and a cache that disagrees with itself. Move both to Redis be
 (the `Cache` interface and express-rate-limit's store option are already shaped for it), and
 write an object-storage driver before running more than one instance with uploads.
 
-**Splitting the API onto its own host** (e.g. `api.studlyf.com`) is supported but costs you the
-single-origin conveniences: set `COOKIE_DOMAIN=.studlyf.com`, `CORS_ORIGINS` to include the site
-origin, `COOKIE_SAMESITE=none` (which forces `Secure`), and `VITE_API_BASE_URL` to the absolute
-API origin — then **rebuild the frontend**, because Vite inlines that value at build time. Forget
-any one of those and sign-in silently fails to stick rather than erroring.
+**Splitting the API onto its own host** is supported, and how much it costs depends entirely on
+one thing — whether the two hosts share a registrable domain.
+
+- **`studlyf.com` + `api.studlyf.com` (recommended):** still *same-site*, because SameSite is
+  computed on the registrable domain, not the origin. `SameSite=Lax` keeps working, so you only
+  need to add the site origin to `CORS_ORIGINS` and set the frontend's `VITE_API_BASE_URL` to the
+  absolute API origin. Do **not** set `COOKIE_SAMESITE=none` — that is strictly weaker for no
+  benefit here — and do not set `COOKIE_DOMAIN`, since the API's host-only cookie is already sent
+  to the API. Then **rebuild the frontend**, because Vite inlines that URL at build time.
+- **`foo.vercel.app` + `bar.onrender.com` (avoid):** different registrable domains, so genuinely
+  cross-site. That forces `COOKIE_SAMESITE=none`, and third-party cookies are blocked by default
+  in Safari and are being phased out in Chrome — meaning **sign-in fails outright for a large
+  share of visitors**. `Cross-Origin-Resource-Policy: same-site` also starts blocking your own
+  `/media` images. Put both on one domain instead.
+
+Forget the `CORS_ORIGINS` entry or the rebuild in the first case and sign-in silently fails to
+stick rather than erroring, which is why this is worth getting right up front.
 
 ---
 

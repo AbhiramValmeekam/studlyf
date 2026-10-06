@@ -146,11 +146,19 @@ There is no build step and no compiled-migrator variant: the server is plain ESM
 recording each in `_migrations`. It is idempotent, and it does **not** touch existing documents
 unless a migration says so.
 
-**Splitting the API onto its own host** (e.g. `api.studlyf.com`) works, but costs the single-origin
-conveniences: set `COOKIE_DOMAIN=.studlyf.com`, `CORS_ORIGINS` to include the site origin,
-`COOKIE_SAMESITE=none` (which forces `Secure`, so HTTPS is required), and the frontend's
-`VITE_API_BASE_URL` to the absolute API origin — then rebuild the frontend, because Vite inlines
-that at build time. Missing any one of these makes sign-in fail silently rather than erroring.
+**Splitting the API onto its own host** is supported, and what it costs depends on whether the two
+hosts share a registrable domain.
+
+- **`studlyf.com` + `api.studlyf.com` (recommended):** same-site, because SameSite is computed on
+  the registrable domain rather than the origin, so `SameSite=Lax` keeps working. Add the site
+  origin to `CORS_ORIGINS` and point the frontend's `VITE_API_BASE_URL` at the absolute API origin,
+  then rebuild the frontend — Vite inlines that at build time. `COOKIE_SAMESITE=none` is **not**
+  needed (and is weaker for no benefit), and neither is `COOKIE_DOMAIN`, since the API's host-only
+  cookie is already sent to the API.
+- **Different registrable domains** (`foo.vercel.app` + `bar.onrender.com`): genuinely cross-site,
+  so it needs `COOKIE_SAMESITE=none`, which forces `Secure`, and browsers block third-party cookies
+  by default in Safari — sign-in breaks for a large share of visitors. `Cross-Origin-Resource-Policy:
+  same-site` will also block the app's own `/media` images. Keep both on one domain.
 
 **Things to change when scaling out:**
 - Rate limiting and the read cache are in-memory, so they are per instance. Switch both to Redis when running more than one instance (the `Cache` interface and express-rate-limit's store option are ready for it).
