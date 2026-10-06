@@ -10,7 +10,14 @@ const bool = (fallback) =>
 const csv = z
   .string()
   .optional()
-  .transform((v) => (v ? v.split(',').map((s) => s.trim()).filter(Boolean) : []));
+  .transform((v) =>
+    v
+      ? v
+          .split(',')
+          .map((s) => s.trim().replace(/^['"]|['"]$/g, '').replace(/\/+$/, ''))
+          .filter(Boolean)
+      : [],
+  );
 
 /** True for an address only reachable from this machine — the shape of every unset URL default. */
 const isLoopback = (url) => {
