@@ -21,6 +21,7 @@ export async function hashPassword(password, log2N) {
 }
 
 export async function verifyPassword(password, stored) {
+  if (typeof stored !== 'string') return false;
   const parts = stored.split('$');
   if (parts.length !== 6 || parts[0] !== 'scrypt') return false;
   const [, n, r, p, saltB64, hashB64] = parts;
