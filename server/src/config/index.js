@@ -47,7 +47,7 @@ const EnvSchema = z.object({
   PASSWORD_RESET_TTL_MINUTES: z.coerce.number().positive().default(60),
   PASSWORD_HASH_COST: z.coerce.number().int().min(10).max(20).optional(),
 
-  MAIL_DRIVER: z.enum(['console', 'smtp', 'memory']).optional(),
+  MAIL_DRIVER: z.enum(['console', 'smtp', 'memory', 'none']).optional(),
   MAIL_FROM: z.string().default('STUDLYF <no-reply@studlyf.local>'),
   SMTP_URL: z.string().optional(),
 
@@ -93,11 +93,15 @@ export function loadConfig(source = process.env) {
   if (mailDriver === 'smtp' && !env.SMTP_URL) throw new Error('SMTP_URL is required when MAIL_DRIVER=smtp');
   // The console driver prints the full message body, and for verification/reset mail that body is
   // a live single-use credential. Refuse to run an environment where that lands in the log
-  // stream and no mail is actually delivered.
-  if (isProd && mailDriver !== 'smtp') {
+  // stream and no mail is actually delivered. `none` is the deliberate way to say the same thing
+  // on purpose — it withholds the body like every other non-development driver, and the mailer
+  // announces at boot exactly which flows are unavailable. Spelled `console` it looks like an
+  // oversight, so that spelling stays refused.
+  if (isProd && mailDriver !== 'smtp' && mailDriver !== 'none') {
     throw new Error(
-      'MAIL_DRIVER=smtp (with SMTP_URL) is required in production: the console driver writes ' +
-        'verification and password-reset links, live tokens included, into the log stream and delivers nothing.',
+      'MAIL_DRIVER must be `smtp` (with SMTP_URL) or the explicit `none` in production: the console ' +
+        'driver writes verification and password-reset links, live tokens included, into the log stream ' +
+        'and delivers nothing, and `memory` holds them in RAM so no user ever receives one.',
     );
   }
 

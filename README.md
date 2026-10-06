@@ -78,9 +78,10 @@ Vite origin (it defaults to `http://localhost:5173`). If Vite prints a different
 refuses to run when `NODE_ENV=production`, and they exist nowhere else.
 
 Verification and password-reset emails are **printed to the console** in development, so you can
-click the links directly. In production the server requires `MAIL_DRIVER=smtp` — the console
-driver would write live reset links into the log stream and deliver nothing, so it is refused at
-boot rather than left as a footgun.
+click the links directly. In production the server refuses to boot unless you choose deliberately:
+`MAIL_DRIVER=smtp` with `SMTP_URL` to send mail, or the explicit `MAIL_DRIVER=none` to run without
+it — registration and sign-in still work (login does not require a verified address), but password
+reset does not, and the server says so at boot.
 
 Useful endpoints once it is up:
 
@@ -128,13 +129,15 @@ production.
 | `API_PUBLIC_URL` | The public origin written into media records. |
 | `CORS_ORIGINS` | Also the allow-list for the CSRF origin check on every write. |
 | `TRUST_PROXY` | **Set explicitly.** Behind a load balancer or CDN it must be the hop count (usually `1`, or `true` for an unbounded chain) so rate limits and logs see real client IPs instead of the proxy's. Use `0` when nothing proxies the server. Guessing this silently breaks rate limiting and every audit-log IP. |
-| `MAIL_DRIVER=smtp` + `SMTP_URL` | See above. |
+| `MAIL_DRIVER` | Either `smtp` with `SMTP_URL`, or the explicit `none`. Both are choices; the server refuses the ambient ones. |
 
 ---
 
 ## Deployment
 
-The image builds both halves and runs them as one service:
+Two shapes are supported, and the choice is really about the cookie.
+
+**One service (simplest).** The image builds both halves and runs them as one origin:
 
 ```bash
 docker build -t studlyf .
@@ -153,6 +156,11 @@ docker run -p 4000:4000 \
 Any host that runs a Node process works the same way — build the frontend, then start the server
 with the variables above. The image's `HEALTHCHECK` polls `/api/v1/ready`, which reports 503
 until the database connection is up, so an orchestrator will not send traffic to a cold instance.
+
+**Split: the API on Render, the site on Vercel** (`render.yaml` + `vercel.json`). Both hosts must
+sit on one registrable domain — `studlyf.com` and `api.studlyf.com` — which is what keeps the
+session cookie working (see the note below). The API service runs as a **single instance with a
+persistent disk**; the site is static, so it has no such constraints.
 
 **Before the first deploy:**
 

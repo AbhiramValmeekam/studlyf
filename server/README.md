@@ -37,7 +37,7 @@ npm run dev          # http://localhost:4000/api/v1  (auto-reload)
 
 > ⚠️ These credentials exist only in the dev seed. `db:seed` refuses to run when `NODE_ENV=production`.
 
-Verification and reset emails are **printed to the console** in development (`MAIL_DRIVER=console`), so you can click the links directly.
+Verification and reset emails are **printed to the console** in development (`MAIL_DRIVER=console`), so you can click the links directly. In production the server requires a deliberate choice: `smtp` (with `SMTP_URL`) to actually send, or the explicit `none` to accept that mail is off. The other two drivers are refused at boot — `console` would write live reset links into the log stream and deliver nothing, and `memory` would hold them in RAM — neither of which is a decision anyone makes on purpose.
 
 Try it:
 ```bash
@@ -84,7 +84,7 @@ message naming the variable if something required is missing or still pointing a
 
 **Required in production:** `MONGODB_URI`, `CORS_ORIGINS`, `APP_URL` (non-localhost),
 `API_PUBLIC_URL` (non-localhost, unless `MEDIA_PUBLIC_BASE_URL` is set), `TRUST_PROXY` (explicit,
-even if `0`), and `MAIL_DRIVER=smtp` with `SMTP_URL`.
+even if `0`), and `MAIL_DRIVER` — either `smtp` with `SMTP_URL`, or the explicit `none`.
 
 | Variable | Default | Purpose |
 |---|---|---|
@@ -104,7 +104,7 @@ even if `0`), and `MAIL_DRIVER=smtp` with `SMTP_URL`.
 | `EMAIL_VERIFICATION_TTL_HOURS` | `24` | Verification link lifetime |
 | `PASSWORD_RESET_TTL_MINUTES` | `60` | Reset link lifetime |
 | `PASSWORD_HASH_COST` | `15` (tests `12`) | scrypt N = 2^cost. Existing hashes upgrade on next login. |
-| `MAIL_DRIVER` | `console` (tests `memory`) | `console` \| `smtp` \| `memory` |
+| `MAIL_DRIVER` | `console` (tests `memory`) | `console` \| `smtp` \| `none` \| `memory`. In production only `smtp` and `none` are accepted: `none` delivers nothing and says so at boot (sign-in still works — login does not require a verified address — but password reset does not), while `console` and `memory` are refused because both keep the token out of the user's hands without anyone having chosen that. |
 | `MAIL_FROM` | `STUDLYF <no-reply@studlyf.local>` | Sender address |
 | `SMTP_URL` | – | Required when `MAIL_DRIVER=smtp`, e.g. `smtps://user:pass@host:465` |
 | `STORAGE_DRIVER` | `local` | Only `local` is accepted — the S3/R2 driver the interface is shaped for is **not implemented**, and `createStorage()` ignores this value. Uploads always go to `UPLOAD_DIR`. |

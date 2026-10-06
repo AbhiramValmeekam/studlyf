@@ -1,0 +1,8 @@
+# The entrypoint is executed by /bin/sh inside a Linux container. If git checks it out with CRLF
+# line endings — which is what a Windows clone does under `core.autocrlf=true` — the kernel sees a
+# bad interpreter and the container exits immediately with a confusing error. Pin it.
+*.sh text eol=lf
+
+# Windows batch/PowerShell scripts keep their CRLF; everything else normalises to LF.
+*.bat text eol=crlf
+*.ps1 text eol=crlf

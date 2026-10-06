@@ -17,9 +17,10 @@
 #     -v studlyf-uploads:/app/server/uploads \
 #     studlyf
 #
-# The five production-required variables are not optional: the server validates them at boot
-# and exits with a specific message rather than starting up in a state that silently loses
-# password-reset mail or mislabels every rate-limited client.
+# The server validates its configuration at boot and exits with a message naming the variable
+# rather than starting up in a state that silently loses password-reset mail or mislabels every
+# rate-limited client. MAIL_DRIVER must be an explicit choice: smtp + SMTP_URL to send mail, or
+# `none` to run without it (registration and sign-in still work; password reset does not).
 
 # ---- stage 1: build the frontend -------------------------------------------------------
 FROM node:20-alpine AS client
@@ -52,9 +53,6 @@ RUN mkdir -p /app/server/uploads /app/server/uploads-private \
   && chown -R node:node /app/server/uploads /app/server/uploads-private /app/dist
 VOLUME ["/app/server/uploads", "/app/server/uploads-private"]
 
-# The node image ships an unprivileged `node` user; there is no reason to serve as root.
-USER node
-
 EXPOSE 4000
 
 # /ready is a real dependency check — it reports 503 until the database connection is up,
@@ -62,4 +60,11 @@ EXPOSE 4000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
   CMD node -e "fetch('http://127.0.0.1:'+(process.env.PORT||4000)+'/api/v1/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
+# The container starts as root only so the entrypoint can take ownership of a freshly mounted
+# volume — the app itself is always exec'd as the unprivileged `node` user. See the script.
+RUN apk add --no-cache su-exec
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node", "--env-file-if-exists=.env", "src/server.js"]

@@ -1,0 +1,72 @@
+# Render blueprint for STUDLYF's API.
+#
+# This deploys the API half only. The website is served by Vercel from the same repository
+# (see vercel.json) — the two are same-site, which is what keeps the session cookie working
+# without SameSite=None. Read the deployment walkthrough before changing CLIENT_DIR.
+#
+# One disk, mounted at a parent directory rather than at each upload path, so both the public
+# uploads and the private project documents share it. docker-entrypoint.sh creates and claims
+# the two subdirectories at start, since a freshly mounted disk arrives owned by root.
+#
+# This service must run as a SINGLE instance: the rate limiter and the read cache are in-memory
+# and per-process, so a second instance would have its own rate-limit budget and its own cache.
+
+services:
+  - type: web
+    name: studlyf-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    # A persistent disk requires a paid instance type; the free tier cannot hold one, and
+    # without a disk every uploaded image is lost on the next deploy.
+    plan: starter
+    region: singapore
+    healthCheckPath: /api/v1/ready
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # The site is served by Vercel, so this origin serves no HTML. Pointing CLIENT_DIR at a
+      # directory with no index.html is what makes the server skip its static mount and behave
+      # as a pure API — see the note in src/config/index.js.
+      - key: CLIENT_DIR
+        value: /app/no-client
+
+      # Render terminates TLS in front of the container, so the app is one hop behind a proxy.
+      # Getting this wrong collapses every visitor into a single rate-limit bucket.
+      - key: TRUST_PROXY
+        value: 1
+
+      # The public origins. API_PUBLIC_URL is written onto every uploaded asset, so media URLs
+      # already in the database were built from whatever this said at upload time.
+      - key: APP_URL
+        value: https://studlyf.in
+      - key: API_PUBLIC_URL
+        value: https://api.studlyf.in
+
+      # Also the allow-list for the origin check on every non-GET request. A missing entry makes
+      # writes fail with a 403 that looks nothing like a CORS problem.
+      - key: CORS_ORIGINS
+        value: https://studlyf.in,https://www.studlyf.in
+
+      # Left unset the server refuses to boot, because the default driver prints live
+      # verification and password-reset links into the log stream and delivers nothing. `none`
+      # is that decision made on purpose: registration and sign-in work, email verification and
+      # PASSWORD RESET do not. Switch to smtp + SMTP_URL to turn mail on.
+      - key: MAIL_DRIVER
+        value: none
+
+      # Where the two upload directories live, inside the mounted disk (mountPath below).
+      - key: UPLOAD_DIR
+        value: /app/server/data/uploads
+      - key: PRIVATE_UPLOAD_DIR
+        value: /app/server/data/uploads-private
+
+      # Set in the dashboard, never committed: mongodb+srv://… from Atlas.
+      - key: MONGODB_URI
+        sync: false
+
+    disk:
+      name: studlyf-media
+      mountPath: /app/server/data
+      sizeGB: 1
