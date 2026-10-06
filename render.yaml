@@ -2,7 +2,7 @@
 #
 # This deploys the API half only. The website is served by Vercel from the same repository
 # (see vercel.json) — the two are same-site, which is what keeps the session cookie working
-# without SameSite=None. Read the deployment walkthrough before changing CLIENT_DIR.
+# without SameSite=None. See README → Deployment for the sequence and the values behind these.
 #
 # One disk, mounted at a parent directory rather than at each upload path, so both the public
 # uploads and the private project documents share it. docker-entrypoint.sh creates and claims
