@@ -161,13 +161,17 @@ until the database connection is up, so an orchestrator will not send traffic to
    on every deploy.
 2. Create the first admin with `ADMIN_EMAIL=… ADMIN_NAME=… ADMIN_PASSWORD=… npm run admin:create`.
    It can also promote an existing user; no public route can grant admin access.
-3. Confirm `UPLOAD_DIR` points at a **persistent volume**. Local media storage is a directory, so
-   anything on an ephemeral filesystem disappears on redeploy.
+3. Confirm `UPLOAD_DIR` points at a **persistent volume**. Uploads are written to the local
+   filesystem and nothing else is implemented — `STORAGE_DRIVER` accepts only `local`, and
+   `createStorage()` ignores it. An ephemeral filesystem means every uploaded image is lost on
+   redeploy, and the database rows pointing at them are left dangling. Moving to S3/R2 means
+   writing that driver first, not flipping a flag.
 
-**When you outgrow one instance:** the rate limiter and the public read cache are in-memory, so
-they are per-instance — move both to Redis (the `Cache` interface and express-rate-limit's store
-option are already shaped for it), move media to S3/R2 behind `StorageDriver`, and stop serving
-the frontend from Node.
+**This is a single-instance deployment.** The rate limiter and the public read cache are
+in-memory, so they are per-process: two instances behind a load balancer means two independent
+rate-limit budgets and a cache that disagrees with itself. Move both to Redis before scaling out
+(the `Cache` interface and express-rate-limit's store option are already shaped for it), and
+write an object-storage driver before running more than one instance with uploads.
 
 **Splitting the API onto its own host** (e.g. `api.studlyf.com`) is supported but costs you the
 single-origin conveniences: set `COOKIE_DOMAIN=.studlyf.com`, `CORS_ORIGINS` to include the site

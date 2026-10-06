@@ -107,7 +107,7 @@ even if `0`), and `MAIL_DRIVER=smtp` with `SMTP_URL`.
 | `MAIL_DRIVER` | `console` (tests `memory`) | `console` \| `smtp` \| `memory` |
 | `MAIL_FROM` | `STUDLYF <no-reply@studlyf.local>` | Sender address |
 | `SMTP_URL` | – | Required when `MAIL_DRIVER=smtp`, e.g. `smtps://user:pass@host:465` |
-| `STORAGE_DRIVER` | `local` | Media storage driver (S3/R2 slot in behind the same interface) |
+| `STORAGE_DRIVER` | `local` | Only `local` is accepted — the S3/R2 driver the interface is shaped for is **not implemented**, and `createStorage()` ignores this value. Uploads always go to `UPLOAD_DIR`. |
 | `UPLOAD_DIR` | `./uploads` | Local upload directory |
 | `MEDIA_PUBLIC_BASE_URL` | `API_PUBLIC_URL/media` | Base URL written into media records |
 | `MAX_UPLOAD_MB` | `5` | Upload size limit |
@@ -154,7 +154,7 @@ that at build time. Missing any one of these makes sign-in fail silently rather 
 
 **Things to change when scaling out:**
 - Rate limiting and the read cache are in-memory, so they are per instance. Switch both to Redis when running more than one instance (the `Cache` interface and express-rate-limit's store option are ready for it).
-- Local media storage should move to S3/R2 behind `StorageDriver`; set `MEDIA_PUBLIC_BASE_URL` to the CDN origin when it does, and remember `UPLOAD_DIR` must be a persistent volume until then.
+- Local media storage should move to object storage, but that driver does not exist yet: write one implementing `LocalDiskStorage`'s three methods and branch on `STORAGE_DRIVER` in `createStorage()`. Until then `UPLOAD_DIR` must be a persistent volume, and the server must run as a **single instance** — the rate limiter and read cache are per-process.
 - For larger catalogues or fuzzy matching, move search to Atlas Search. Only the repository filters in `modules/opportunities` and `modules/resources` change.
 
 Create the first production admin with `ADMIN_EMAIL=… ADMIN_NAME=… ADMIN_PASSWORD=… npm run admin:create`.
