@@ -1,6 +1,6 @@
 // Thin client for the STUDLYF Phase-1 API. In dev, requests go through the Vite
 // proxy (/api → :4000) so they're same-origin and the session cookie flows.
-const BASE = import.meta.env.VITE_API_BASE_URL || '/api/v1'
+const BASE = (import.meta.env.VITE_API_BASE_URL || '/api/v1').trim().replace(/\/+$/, '')
 
 export class ApiError extends Error {
   constructor(status, code, message, details) {
