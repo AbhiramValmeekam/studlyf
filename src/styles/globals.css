@@ -1,0 +1,558 @@
+/* Self-hosted Clash Display (headline face). font-display:block so the giant hero
+   headline never flashes the Impact fallback on a cold/hard reload — it stays invisible
+   for the tiny moment the local ~15KB woff2 loads, then paints in the real face. */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/clash-display-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: 8 8 10;
+  --ink-2: 16 16 20;
+  --ink-3: 25 25 31;
+  --bone: 244 244 240;
+  --bone-2: 150 152 160;
+  --line: 255 255 255;
+
+  --accent: #4cc9ff;
+  --violet: #5b2cff;
+  --flare: #ff4d2e;
+
+  color-scheme: dark;
+}
+
+/* Light theme — applied globally via [data-theme="light"], or locally to a
+   single bright section via .on-light. Same token values either way. */
+:root[data-theme='light'],
+.on-light {
+  --ink: 247 247 244;
+  --ink-2: 255 255 255;
+  --ink-3: 255 255 255;
+  --bone: 14 14 18;
+  --bone-2: 92 94 104;
+  --line: 12 14 22;
+  color-scheme: light;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* Lenis drives scrolling; keep native smooth off to avoid double-easing. */
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--ink));
+  color: rgb(var(--bone));
+  font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #08080a;
+}
+
+/* Thin, quiet scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line) / 0.14);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--line) / 0.24);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Hero backdrop: the WebGL shader carries both themes; the soft blurred glow
+   is only the reduced-motion fallback. In light theme the canvas is eased back
+   and the scrim (which tracks --ink) turns into a white wash so the dark
+   headline stays readable over it. */
+.hero-ambient {
+  display: none;
+}
+:root[data-theme='light'] .hero-shader-canvas {
+  opacity: 0.6;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-shader {
+    display: none;
+  }
+  .hero-ambient {
+    display: block !important;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: theme('maxWidth.edge');
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+  }
+
+  .display-face {
+    font-family: 'Clash Display', Impact, sans-serif;
+    font-weight: 600;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--bone-2));
+  }
+
+  /* Hairline dividers that read on both themes */
+  .hairline {
+    border-color: rgb(var(--line) / 0.1);
+  }
+
+  .glass {
+    background: rgb(var(--ink-2) / 0.6);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgb(var(--line) / 0.08);
+  }
+
+  .card-surface {
+    background: rgb(var(--ink-3) / 0.7);
+    border: 1px solid rgb(var(--line) / 0.08);
+    border-radius: 20px;
+  }
+
+  /* Pointer-tracked spotlight for interactive cards: a soft radial glow follows the
+     cursor (via --mx/--my set on the element by a mousemove handler) and eases in on
+     hover. The pseudo sits above the surface but below content (z-index -1 within the
+     card's own stacking context). Neutral tint so it reads under every persona accent. */
+  .spotlight-card {
+    position: relative;
+    isolation: isolate;
+    transition: border-color 0.4s ease;
+  }
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(20rem 20rem at var(--mx, 50%) var(--my, -20%),
+      rgb(var(--line) / 0.16), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .spotlight-card:hover {
+    border-color: rgb(var(--line) / 0.22);
+  }
+  .spotlight-card:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Light theme lifts surfaces with soft shadows (dark relies on borders alone) */
+:root[data-theme='light'] .card-surface,
+.on-light .card-surface {
+  border-color: rgb(var(--line) / 0.1);
+  box-shadow: 0 1px 2px rgb(15 18 30 / 0.04), 0 12px 34px rgb(15 18 30 / 0.06);
+}
+:root[data-theme='light'] .glass {
+  background: rgb(255 255 255 / 0.72);
+  box-shadow: 0 1px 30px rgb(15 18 30 / 0.06);
+}
+/* Ambient hero glows are softer on a bright canvas */
+:root[data-theme='light'] .ambient-glow {
+  opacity: 0.4;
+}
+
+/* Long-form sanitised HTML from the CMS (opportunity/resource bodies) */
+.prose-editorial {
+  color: rgb(var(--bone) / 0.85);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.prose-editorial > * + * {
+  margin-top: 1.25em;
+}
+.prose-editorial h2,
+.prose-editorial h3 {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 600;
+  color: rgb(var(--bone));
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-top: 1.8em;
+}
+.prose-editorial h2 {
+  font-size: 1.6rem;
+}
+.prose-editorial h3 {
+  font-size: 1.3rem;
+}
+.prose-editorial a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+}
+.prose-editorial ul,
+.prose-editorial ol {
+  padding-left: 1.4em;
+}
+.prose-editorial ul {
+  list-style: disc;
+}
+.prose-editorial ol {
+  list-style: decimal;
+}
+.prose-editorial li::marker {
+  color: rgb(var(--bone-2));
+}
+.prose-editorial strong {
+  color: rgb(var(--bone));
+  font-weight: 600;
+}
+.prose-editorial blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.2em;
+  color: rgb(var(--bone-2));
+  font-style: italic;
+}
+.prose-editorial code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: rgb(var(--line) / 0.08);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+}
+.prose-editorial img {
+  border-radius: 14px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* The editor is a contentEditable surface, not a text flow: keep it from growing a focus ring
+   the field wrapper already draws, and let an empty paragraph hold the caret. */
+.rte-editable:focus {
+  outline: none;
+}
+.rte-editable p:first-child {
+  margin-top: 0;
+}
+
+/* Subtle grid backdrop for the page body below the hero. Adapted from a 21st.dev
+   grid-background (meghtrix): two 1px line gradients on a fixed cell size, tinted
+   through --line so it reads on both themes, with a soft top fade so the grid
+   eases in under the hero rather than starting on a hard edge. */
+.grid-bg {
+  background-image: linear-gradient(to right, rgb(var(--line) / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--line) / 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 180px);
+  mask-image: linear-gradient(to bottom, transparent, #000 180px);
+}
+
+/* Auto-scrolling testimonial marquee — each row lays its cards in a horizontal
+   track that is rendered twice and translated by exactly one copy (+ the gap) for
+   a seamless loop. Rows can run in either direction, pause on hover, and hold
+   still under reduced-motion. Adapted from the magicui marquee pattern. */
+.marquee-row {
+  display: flex;
+  gap: var(--mq-gap, 1.5rem);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--mq-gap, 1.5rem);
+  animation: marquee-x var(--mq-duration, 60s) linear infinite;
+  animation-direction: var(--mq-dir, normal);
+}
+.marquee-row:hover .marquee-group {
+  animation-play-state: paused;
+}
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--mq-gap, 1.5rem)));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-group {
+    animation: none;
+  }
+  .marquee-row {
+    overflow-x: auto;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================================
+   Light "feature landing" theme — shared helpers used by the redesigned
+   Build-A-Project / Mock Interview / Resume / Portfolio / STUDHub / Courses
+   landing pages. These pages are self-contained light surfaces (white bg,
+   dark text) that render inside the dark app shell, so they set their own
+   colours explicitly rather than through the dark design tokens.
+   ========================================================================= */
+
+/* Poppins is loaded in index.html; these pages opt in via .font-poppins. */
+.font-poppins {
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* Signature brand gradient headings. */
+.grad-heading {
+  background-image: linear-gradient(100deg, #6c4dff 0%, #ec4899 55%, #ff5b5b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.grad-heading-2 {
+  background-image: linear-gradient(100deg, #6c2bff 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glow button — purple pill with an animated shimmer and floating orbs.
+   Ported from the reference site's inline .glow-btn system. */
+.glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: #7c3aed;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.9rem 1.75rem;
+  box-shadow: 0 10px 30px -8px rgba(124, 58, 237, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  isolation: isolate;
+}
+.glow-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -8px rgba(124, 58, 237, 0.7);
+}
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.45) 50%, transparent 75%);
+  transform: translateX(-100%);
+  animation: sdf-shimmer 3.2s ease-in-out infinite;
+  z-index: 1;
+}
+.glow-btn > * {
+  position: relative;
+  z-index: 2;
+}
+.glow-btn.glow-btn-lg {
+  padding: 1.1rem 2.25rem;
+  font-size: 1.05rem;
+}
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(14px);
+  opacity: 0.7;
+  z-index: 0;
+  pointer-events: none;
+}
+.glow-orb-1 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.9), transparent 70%);
+  left: -10px;
+  top: -20px;
+  animation: sdf-orb1 6s ease-in-out infinite;
+}
+.glow-orb-2 {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255, 91, 91, 0.9), transparent 70%);
+  right: -6px;
+  bottom: -18px;
+  animation: sdf-orb2 7s ease-in-out infinite;
+}
+.glow-orb-3 {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(108, 77, 255, 0.9), transparent 70%);
+  right: 30%;
+  top: -22px;
+  animation: sdf-orb3 5.5s ease-in-out infinite;
+}
+@keyframes sdf-shimmer {
+  0% { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(100%); }
+}
+@keyframes sdf-orb1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(8px, 10px); }
+}
+@keyframes sdf-orb2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, -8px); }
+}
+@keyframes sdf-orb3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(6px, -10px); }
+}
+
+/* Ecosystem gateway: the HR & Orgs choice fades in (no layout animation needed). */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #hr-org-choice,
+  [class*='animate-[fadeIn'] { animation: none !important; }
+}
+
+/* =========================================================================
+   Résumé document sheet — a fixed A4-width white page the templates render
+   onto. Authored at 794×1123px (210×297mm @96dpi); the preview scales it with
+   a CSS transform so on-screen matches the printed PDF exactly. Always
+   black-on-white regardless of app theme.
+   ========================================================================= */
+.resume-sheet {
+  width: 794px;
+  min-height: 1123px;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 48px 52px;
+  font-size: 13px;
+  line-height: 1.45;
+  box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.35);
+}
+/* Full-bleed (sidebar) templates own their own gutters. */
+.resume-sheet-flush {
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+}
+.resume-doc-flush {
+  flex: 1;
+}
+
+/* Print: isolate the sheet, drop the on-screen scale transform, one A4 page. */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .resume-scaler-holder {
+    height: auto !important;
+  }
+  .resume-scaler {
+    transform: none !important;
+    width: 794px !important;
+  }
+  #resume-print-target,
+  #resume-print-target * {
+    visibility: visible;
+  }
+  #resume-print-target {
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-shadow: none !important;
+  }
+}

@@ -1,38 +1,75 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useCallback } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { api, ApiError } from '../lib/api'
 
-/**
- * Fake auth for the prototype. No real backend — `login(role)` simply records
- * which persona is "signed in" so shells and ProtectedRoute can react. State is
- * in-memory and resets on refresh (by design for the MVP).
- */
 const AuthContext = createContext(null)
 
-// Human-friendly demo identities per role, reused across shells + topbars.
-const PROFILES = {
-  builder: { name: 'Aarav Menon', handle: '@aaravbuilds', role: 'builder', title: 'CS Undergrad · Builder' },
-  founder: { name: 'Ishita Rao', handle: '@ishitabuilds', role: 'founder', title: 'Founder · Loopwise' },
-  investor: { name: 'Kabir Shah', handle: '@kabir.vc', role: 'investor', title: 'Partner · Northstar Capital' },
-  hr: { name: 'Meera Iyer', handle: '@meera.talent', role: 'hr', title: 'Head of Talent · Cygnus' },
-  // Organization — runs hackathons/challenges and evaluates participants via the platform
-  org: { name: 'Priya Nambiar', handle: '@priya.orgs', role: 'org', title: 'Program Lead · TechOrg India' },
-}
-
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
+  const qc = useQueryClient()
 
-  const login = useCallback((role) => {
-    const profile = PROFILES[role] || PROFILES.builder
-    setUser(profile)
-    return profile
-  }, [])
+  const { data: user, isLoading } = useQuery({
+    queryKey: ['me'],
+    queryFn: async () => {
+      try {
+        const { data } = await api.me()
+        return data
+      } catch (err) {
+        // 401 just means "signed out" — a normal state, not an error to surface.
+        if (err instanceof ApiError && err.status === 401) return null
+        throw err
+      }
+    },
+    staleTime: 60 * 1000,
+    retry: false,
+  })
 
-  const logout = useCallback(() => setUser(null), [])
+  const refresh = useCallback(() => qc.invalidateQueries({ queryKey: ['me'] }), [qc])
 
-  return (
-    <AuthContext.Provider value={{ user, role: user?.role || null, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+  const login = useCallback(
+    async (credentials) => {
+      const { data } = await api.login(credentials)
+      qc.setQueryData(['me'], data.user)
+      return data.user
+    },
+    [qc],
   )
+
+  const register = useCallback(
+    async (payload) => {
+      const { data } = await api.register(payload)
+      qc.setQueryData(['me'], data.user)
+      return data.user
+    },
+    [qc],
+  )
+
+  const logout = useCallback(async () => {
+    try {
+      await api.logout()
+    } finally {
+      qc.setQueryData(['me'], null)
+      qc.clear()
+    }
+  }, [qc])
+
+  // Ecosystem access comes from the server-computed `user.ecosystems` — never from roles the
+  // client guesses at. `isBuilder` stays for the existing builder pages.
+  const ecosystems = user?.ecosystems ?? {}
+  const value = {
+    user: user ?? null,
+    isLoading,
+    isAuthed: !!user,
+    ecosystems,
+    hasEcosystem: (key) => !!ecosystems[key]?.active,
+    isBuilder: ecosystems.BUILDER ? !!ecosystems.BUILDER.active : !!user?.roles?.includes('BUILDER'),
+    isAdmin: !!user?.admin,
+    login,
+    register,
+    logout,
+    refresh,
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {
@@ -40,5 +77,3 @@ export function useAuth() {
   if (!ctx) throw new Error('useAuth must be used within AuthProvider')
   return ctx
 }
-
-export { PROFILES }

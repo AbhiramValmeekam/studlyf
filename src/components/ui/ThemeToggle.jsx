@@ -1,32 +1,58 @@
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../../context/ThemeContext'
 
-/**
- * ThemeToggle — sun/moon switch that flips the app between dark and light.
- * Icons are inline SVG so they inherit currentColor and stay crisp.
- */
 export function ThemeToggle({ className = '' }) {
   const { theme, toggle } = useTheme()
-  const isLight = theme === 'light'
+  const isDark = theme === 'dark'
+
   return (
     <button
       onClick={toggle}
-      data-cursor="hover"
-      aria-label={isLight ? 'Switch to dark theme' : 'Switch to light theme'}
-      title={isLight ? 'Dark mode' : 'Light mode'}
-      className={`grid place-items-center h-9 w-9 rounded-full border border-bone/20 text-bone2 hover:text-bone hover:border-bone/50 transition-colors ${className}`}
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      title={isDark ? 'Light theme' : 'Dark theme'}
+      className={`relative grid h-10 w-10 place-items-center rounded-full border border-line/15 text-bone transition-colors duration-300 hover:border-line/40 hover:bg-line/[0.06] ${className}`}
     >
-      {isLight ? (
-        // moon
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-        </svg>
-      ) : (
-        // sun
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-        </svg>
-      )}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={theme}
+          initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+          transition={{ duration: 0.25 }}
+          className="absolute"
+        >
+          {isDark ? <MoonIcon /> : <SunIcon />}
+        </motion.span>
+      </AnimatePresence>
     </button>
+  )
+}
+
+function SunIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.6" />
+      {[...Array(8)].map((_, i) => {
+        const a = (i * Math.PI) / 4
+        const x1 = 12 + Math.cos(a) * 7
+        const y1 = 12 + Math.sin(a) * 7
+        const x2 = 12 + Math.cos(a) * 9.2
+        const y2 = 12 + Math.sin(a) * 9.2
+        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      })}
+    </svg>
+  )
+}
+
+function MoonIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
   )
 }
