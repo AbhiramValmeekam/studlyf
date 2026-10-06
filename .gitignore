@@ -5,6 +5,9 @@ node_modules/
 dist/
 dist-ssr/
 
+# vite's transform cache (regenerated on every dev run; never commit it)
+.vite/
+
 # local env
 .env
 .env.*
@@ -16,6 +19,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# one-off scraper (script + scraped output); public/imported/ is kept
+.scrape/
 
 # editor / OS
 .vscode/*

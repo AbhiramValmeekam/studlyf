@@ -1,0 +1,26 @@
+# Keep the build context small and prevent host artefacts (a local node_modules built for
+# Windows, a dev database, logs, uploaded test files) from leaking into the image.
+.git
+.gitignore
+
+**/node_modules
+
+# Local build output — the image builds the frontend itself in stage 1.
+dist
+dist-ssr
+.vite
+
+# The embedded dev database and everything else that is runtime state, not source.
+server/.data
+server/uploads
+server/uploads-private
+
+*.log
+.env
+.env.*
+!.env.example
+
+Dockerfile
+.dockerignore
+README.md
+docs

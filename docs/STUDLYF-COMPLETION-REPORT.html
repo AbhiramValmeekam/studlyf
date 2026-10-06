@@ -1,0 +1,688 @@
+<title>STUDLYF Completion Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  /* Layout: one 74ch report column, a sticky section index beside it on wide screens.
+     Type: Archivo (headings) / Source Serif 4 (prose) / IBM Plex Mono (paths and counts).
+     Color: the product's own ink ground and acid-cyan accent, with violet for structure
+     and flare reserved for risks and deviations. */
+  :root {
+    --bg: #f4f6f7;
+    --surface: #ffffff;
+    --fg: #0d1519;
+    --muted: #55676f;
+    --faint: #7d8d95;
+    --line: #dae1e4;
+    --line-soft: #e8edef;
+    --accent: #0a6c88;
+    --accent-wash: #e2f1f6;
+    --violet: #4b22d6;
+    --flare: #b8341c;
+    --flare-wash: #fbe9e4;
+    --ok: #2f6b4f;
+    --ok-wash: #e3f0e8;
+    --radius: 10px;
+    --wrap: 74ch;
+    --step--1: 0.8125rem;
+    --step-0: 1.0625rem;
+    --step-1: 1.3rem;
+    --step-2: 1.75rem;
+    --step-3: 2.6rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1114;
+      --surface: #121a1e;
+      --fg: #e6eef1;
+      --muted: #93a6ae;
+      --faint: #6d8089;
+      --line: #223037;
+      --line-soft: #1a252a;
+      --accent: #4cc9ff;
+      --accent-wash: #10262f;
+      --violet: #a794ff;
+      --flare: #ff8367;
+      --flare-wash: #2c1712;
+      --ok: #74c79b;
+      --ok-wash: #12261c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1114;
+    --surface: #121a1e;
+    --fg: #e6eef1;
+    --muted: #93a6ae;
+    --faint: #6d8089;
+    --line: #223037;
+    --line-soft: #1a252a;
+    --accent: #4cc9ff;
+    --accent-wash: #10262f;
+    --violet: #a794ff;
+    --flare: #ff8367;
+    --flare-wash: #2c1712;
+    --ok: #74c79b;
+    --ok-wash: #12261c;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: var(--step-0);
+    line-height: 1.65;
+    padding-inline: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin-inline: auto; }
+
+  h1, h2, h3, .label, .stat-n, .chip { font-family: Archivo, "Helvetica Neue", Arial, sans-serif; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.015em; }
+  h1 { font-size: var(--step-3); font-weight: 700; line-height: 1.05; }
+  h2 { font-size: var(--step-2); font-weight: 600; line-height: 1.15; }
+  h3 { font-size: var(--step-1); font-weight: 600; line-height: 1.25; }
+  p { margin: 0; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  .mono, code, .stat-n {
+    font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  code {
+    font-size: 0.855em;
+    background: var(--line-soft);
+    border-radius: 5px;
+    padding: 0.1em 0.4em;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---- masthead ---- */
+  .masthead {
+    border-bottom: 1px solid var(--line);
+    padding-block: 56px 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: var(--step--1);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .standfirst { max-width: 62ch; color: var(--muted); font-size: 1.125rem; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .stat { background: var(--surface); padding: 18px 20px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .stat-n { font-size: 1.6rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+  .stat-l { font-size: var(--step--1); color: var(--muted); letter-spacing: 0.02em; }
+
+  /* ---- body grid ---- */
+  .body { display: grid; grid-template-columns: 1fr; gap: 48px; padding-block: 44px 80px; }
+  @media (min-width: 1020px) {
+    .body { grid-template-columns: 210px minmax(0, var(--wrap)); gap: 64px; }
+  }
+  .toc { display: none; }
+  @media (min-width: 1020px) {
+    .toc { display: block; position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; max-height: calc(100dvh - 40px); overflow-y: auto; }
+  }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .toc a {
+    display: flex; gap: 10px; align-items: baseline;
+    font-family: Archivo, sans-serif; font-size: 0.82rem; line-height: 1.35;
+    color: var(--muted); text-decoration: none; padding: 5px 8px; border-radius: 6px;
+  }
+  .toc a:hover { color: var(--fg); background: var(--line-soft); }
+  .toc .n { font-family: "IBM Plex Mono", monospace; color: var(--faint); font-size: 0.75rem; min-width: 1.6em; }
+
+  main { display: flex; flex-direction: column; gap: 52px; min-width: 0; }
+  section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 24px; }
+  .sec-head { display: flex; gap: 14px; align-items: baseline; border-top: 1px solid var(--line); padding-top: 20px; }
+  .sec-n { font-family: "IBM Plex Mono", monospace; font-size: var(--step--1); color: var(--accent); min-width: 2.2em; padding-top: 6px; }
+  .sec-body { display: flex; flex-direction: column; gap: 16px; min-width: 0; flex: 1; }
+
+  ul, ol.plain { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: 9px; }
+  li { padding-left: 2px; }
+  li::marker { color: var(--faint); }
+
+  .paths { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .paths div {
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px;
+    padding: 11px 15px; background: var(--surface);
+  }
+  .paths div + div { border-top: 1px solid var(--line-soft); }
+  .paths .p { font-family: "IBM Plex Mono", monospace; font-size: 0.83rem; overflow-wrap: anywhere; }
+  .paths .d { font-size: var(--step--1); color: var(--muted); }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--violet);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .note.risk { border-left-color: var(--flare); }
+  .note.good { border-left-color: var(--ok); }
+  .note-title { font-family: Archivo, sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: -0.005em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { font-family: Archivo, sans-serif; font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  td.done { color: var(--ok); white-space: nowrap; font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; }
+  td.no { color: var(--flare); white-space: nowrap; font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  .table-wrap table { min-width: 520px; }
+  .table-wrap th, .table-wrap td:first-child { background: var(--surface); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 0.78rem; letter-spacing: 0.01em;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 3px 10px; color: var(--muted); background: var(--surface);
+  }
+  .chip.a { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
+  .chip.r { border-color: var(--flare); color: var(--flare); background: var(--flare-wash); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-block: 26px 40px;
+    color: var(--muted); font-size: var(--step--1);
+    display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: space-between;
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <span class="eyebrow">§102 · final implementation report</span>
+    <h1>STUDLYF platform completion</h1>
+    <p class="standfirst">
+      A gap-driven pass over the master specification. The audit found the five ecosystems already
+      built and working, so this work closed the four clusters that were genuinely absent rather
+      than rebuilding what existed.
+    </p>
+    <div class="stats">
+      <div class="stat"><span class="stat-n mono">282</span><span class="stat-l">tests passing · 22 files</span></div>
+      <div class="stat"><span class="stat-n mono">203&nbsp;→&nbsp;282</span><span class="stat-l">baseline at audit · now</span></div>
+      <div class="stat"><span class="stat-n mono">17</span><span class="stat-l">migrations applied</span></div>
+      <div class="stat"><span class="stat-n mono">6</span><span class="stat-l">new models</span></div>
+      <div class="stat"><span class="stat-n mono">4</span><span class="stat-l">new backend modules</span></div>
+      <div class="stat"><span class="stat-n mono">green</span><span class="stat-l">production build</span></div>
+    </div>
+  </header>
+
+  <div class="body">
+    <nav class="toc" aria-label="Report sections">
+      <ol>
+        <li><a href="#s1"><span class="n">01</span><span>What already existed</span></a></li>
+        <li><a href="#s2"><span class="n">02</span><span>What was implemented</span></a></li>
+        <li><a href="#s3"><span class="n">03</span><span>What was modified</span></a></li>
+        <li><a href="#s4"><span class="n">04</span><span>Database migrations</span></a></li>
+        <li><a href="#s5"><span class="n">05</span><span>New models</span></a></li>
+        <li><a href="#s6"><span class="n">06</span><span>New APIs</span></a></li>
+        <li><a href="#s7"><span class="n">07</span><span>New frontend routes</span></a></li>
+        <li><a href="#s8"><span class="n">08</span><span>New backend modules</span></a></li>
+        <li><a href="#s9"><span class="n">09</span><span>Authentication</span></a></li>
+        <li><a href="#s10"><span class="n">10</span><span>RBAC</span></a></li>
+        <li><a href="#s11"><span class="n">11</span><span>Builder features</span></a></li>
+        <li><a href="#s12"><span class="n">12</span><span>Organization features</span></a></li>
+        <li><a href="#s13"><span class="n">13</span><span>HR features</span></a></li>
+        <li><a href="#s14"><span class="n">14</span><span>Founder features</span></a></li>
+        <li><a href="#s15"><span class="n">15</span><span>Investor features</span></a></li>
+        <li><a href="#s16"><span class="n">16</span><span>Add-ons</span></a></li>
+        <li><a href="#s17"><span class="n">17</span><span>Admin features</span></a></li>
+        <li><a href="#s18"><span class="n">18</span><span>Notifications</span></a></li>
+        <li><a href="#s19"><span class="n">19</span><span>Search</span></a></li>
+        <li><a href="#s20"><span class="n">20</span><span>Analytics</span></a></li>
+        <li><a href="#s21"><span class="n">21</span><span>Tests executed</span></a></li>
+        <li><a href="#s22"><span class="n">22</span><span>Build result</span></a></li>
+        <li><a href="#s23"><span class="n">23</span><span>External integrations</span></a></li>
+        <li><a href="#s24"><span class="n">24</span><span>Known issues</span></a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section id="s1">
+        <div class="sec-head"><span class="sec-n">01</span><h2>What already existed</h2></div>
+        <div class="sec-body">
+          <p>
+            The starting assumption was that the platform was mostly unbuilt. The audit found the
+            opposite, and the plan was reshaped around it: rebuilding working features is exactly
+            the failure mode the specification warns against.
+          </p>
+          <ul>
+            <li>All five ecosystems already had backend modules with Zod-validated routes, real database persistence and per-ecosystem authorization — identity and RBAC (§1–5), builder (§6–12), organization (§19–25), HR (§26–33), founder (§34–36, 44), investor (§46–49), STUD Hub, résumé and portfolio (§51/53/54), admin CMS and audit logs (§61–62, 64, 92), and per-ecosystem onboarding (§77).</li>
+            <li>All five already had frontend route trees, guarded by <code>RequireEcosystem</code> and <code>RequireAccount</code>.</li>
+            <li>The test suite stood at <strong>203 passing tests across 15 files</strong> — a green baseline that every workstream had to preserve and extend.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s2">
+        <div class="sec-head"><span class="sec-n">02</span><h2>What was implemented</h2></div>
+        <div class="sec-body">
+          <p>Four workstreams, each closing a gap the audit confirmed as genuinely absent.</p>
+
+          <h3>A · Founder workspace depth (§37–43, §45)</h3>
+          <p>
+            The strategy workspace was a set of flat strings. It now holds structured, persistable
+            builders: the eleven-section pitch deck, a market analysis with TAM/SAM/SOM, a
+            competitor array, the nine-block business model canvas, and a go-to-market plan — all
+            additive, so every word a founder had already written stays visible. Traction gained a
+            dated <code>tractionHistory</code> series so growth is a line rather than a snapshot.
+            The readiness scorer was updated in the same change, because it reads these fields.
+          </p>
+
+          <h3>B · Public pages, visibility and real certificates (§18/§68/§81/§82)</h3>
+          <p>
+            Certificates are now entities rather than something derived on the fly: a
+            <code>certificates</code> collection with a unique verification code, issued when
+            results are finalised, and a public unauthenticated
+            <code>GET /certificates/verify/:code</code>. Public URLs were added for builders,
+            projects, organizations and published startup pages, each resolved without an account
+            and each backed by an allow-listed serializer. A founder's startup gained a stable
+            public handle and an explicit audience setting, so nothing becomes public without the
+            founder opting in — and the handle never changes when they do.
+          </p>
+
+          <h3>C · Career roadmap and STUD OTT (§52, §55)</h3>
+          <p>
+            Both were entirely absent. The roadmap maps a target role to required skills and
+            computes a personal plan by diffing against the builder's own profile — <strong>rule-based
+            only</strong>, with no AI provider named anywhere (§90); the service is the seam a model
+            would later plug into. STUD OTT is its own content shelf with videos, articles, series
+            and short courses, plus per-viewer progress that survives sign-out.
+          </p>
+
+          <h3>D · Cross-ecosystem search and generic saves (§56, §57)</h3>
+          <p>
+            Search covered opportunities and resources only. It now reaches builders, founders and
+            startups, organizations and projects — every new scope gated by the same visibility
+            predicate the entity's own public page uses. Saving was investor-to-founder only; it is
+            now one platform-wide <code>saved_items</code> table serving twelve entity types, with
+            the investor shortlist migrated onto it so there is one mechanism, not two (§96).
+          </p>
+        </div>
+      </section>
+
+      <section id="s3">
+        <div class="sec-head"><span class="sec-n">03</span><h2>What was modified</h2></div>
+        <div class="sec-body">
+          <p>
+            Existing files were changed only where a new capability had to be wired in. No working
+            behaviour was replaced.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Area</th><th>Change</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">database/schema/ecosystem.js</td><td>Structured workspace sub-schemas and traction history on the founder profile; founder handle, audience, and indexed search terms; organization search terms.</td></tr>
+                <tr><td class="mono">database/schema/index.js</td><td>Registered the six new models alongside the existing ones.</td></tr>
+                <tr><td class="mono">modules/founder/*</td><td>Workspace views, validation, the readiness scorer, and the public/ investor serializers.</td></tr>
+                <tr><td class="mono">modules/community/*</td><td>Extracted the feed's card builder so search and the saved list render projects identically to the community feed.</td></tr>
+                <tr><td class="mono">modules/builder-profiles/*</td><td>Added a batched public-card serializer shared by search and saves.</td></tr>
+                <tr><td class="mono">modules/investor/investor.service.js</td><td>The shortlist now reads and writes <code>saved_items</code>, keeping the old array as a read-only fallback so nothing is lost.</td></tr>
+                <tr><td class="mono">modules/search/search.routes.js</td><td>Rewritten for six groups, per-group totals, and an unknown-scope 400.</td></tr>
+                <tr><td class="mono">app.js</td><td>Mounted the certificates, roadmaps, OTT and saved routers; per-viewer routes sit ahead of the public cache group.</td></tr>
+                <tr><td class="mono">admin/admin.routes.js</td><td>Wired the roadmap and OTT admin routers.</td></tr>
+                <tr><td class="mono">database/seeds/dev-seed.js</td><td>Seeded saved items, roadmap templates, OTT titles and progress, and organization search terms.</td></tr>
+                <tr><td class="mono">src/App.jsx · Nav · Footer</td><td>New routes for saved items and OTT, workspace sub-routes, and discovery links for both.</td></tr>
+                <tr><td class="mono">src/pages/Search.jsx</td><td>Scope chips across all six groups, with "see all" jump into a single scope.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4">
+        <div class="sec-head"><span class="sec-n">04</span><h2>Database migrations</h2></div>
+        <div class="sec-body">
+          <p>
+            Migrations are an ordered ledger in <code>_migrations</code>; indexes come from schema
+            <code>syncIndexes()</code> rather than from migration code. All seventeen markers now
+            apply cleanly, and a re-run is a no-op.
+          </p>
+          <div class="paths">
+            <div><span class="p">0012_certificates</span><span class="d">Mints the credential behind every result achievement that already exists. Idempotent — anything already holding a certificate is skipped.</span></div>
+            <div><span class="p">0013_founder_public_handles</span><span class="d">Gives every existing founder profile a handle from its startup name and sets the audience to investor-visible. Nothing becomes public by migrating.</span></div>
+            <div><span class="p">0014_career_roadmaps</span><span class="d">Records the roadmap catalog and per-user goal collections. New and default-safe.</span></div>
+            <div><span class="p">0015_stud_ott</span><span class="d">Records the OTT shelf and per-viewer progress collections. New and default-safe.</span></div>
+            <div><span class="p">0016_saved_items</span><span class="d">Copies every investor's saved founders into <code>saved_items</code> so the one mechanism starts out holding what the old one did. The legacy array is left read-only.</span></div>
+            <div><span class="p">0017_search_terms_for_orgs_and_founders</span><span class="d">Backfills the indexed word lists unified search matches on, and the title terms its relevance ranking reads.</span></div>
+          </div>
+          <div class="note good">
+            <span class="note-title">Verified against the development database</span>
+            <p><code>npm run db:migrate</code> applied markers 0011–0017 against the persistent dev database, and a second run reported no pending migrations. No destructive change was made and no seed or reset script was run.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="s5">
+        <div class="sec-head"><span class="sec-n">05</span><h2>New models</h2></div>
+        <div class="sec-body">
+          <p>The platform now registers forty-five models. These six are new in this pass.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Model</th><th>Collection</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">Certificate</td><td class="mono">certificates</td><td>A verifiable credential: recipient, issuer, type, issue date, unique verification code.</td></tr>
+                <tr><td class="mono">RoadmapTemplate</td><td class="mono">roadmap_templates</td><td>A target role mapped to required skills, with prioritized steps.</td></tr>
+                <tr><td class="mono">UserRoadmap</td><td class="mono">user_roadmaps</td><td>One person's chosen goal, with per-step completion.</td></tr>
+                <tr><td class="mono">Ott</td><td class="mono">ott</td><td>A shelf title — video, article, series or course — with optional episodes.</td></tr>
+                <tr><td class="mono">OttProgress</td><td class="mono">ott_progress</td><td>One viewer's place in one title, including completed episodes.</td></tr>
+                <tr><td class="mono">SavedItem</td><td class="mono">saved_items</td><td>One bookmark: user, entity type, entity id, timestamp, unique together.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="s6">
+        <div class="sec-head"><span class="sec-n">06</span><h2>New APIs</h2></div>
+        <div class="sec-body">
+          <p>All under <code>/api/v1</code>. Public reads are cached and unauthenticated; anything per-viewer is mounted ahead of the cache with <code>noStore</code> and a session requirement.</p>
+          <div class="paths">
+            <div><span class="p">GET /search?q=&amp;scope=…</span><span class="d">Six groups — opportunities, resources, builders, founders, organizations, projects — with per-group totals and a relevance-ranked order.</span></div>
+            <div><span class="p">GET · POST · DELETE /me/saved</span><span class="d">The viewer's bookmarks: paged list with per-type counts, save, unsave. Both writes are idempotent.</span></div>
+            <div><span class="p">GET /certificates/verify/:code</span><span class="d">Public verification. Rate-limited to thirty reads a minute because enumerating codes is the obvious abuse.</span></div>
+            <div><span class="p">GET /roadmaps · /roadmaps/:slug · /roadmaps/role-families</span><span class="d">The roadmap catalog builders choose from.</span></div>
+            <div><span class="p">GET · PUT · DELETE /builder/roadmap</span><span class="d">The builder's own goal, plus <code>PATCH /builder/roadmap/steps/:skillSlug</code> to tick a step.</span></div>
+            <div><span class="p">GET /ott · GET /ott/:slug</span><span class="d">The OTT shelf and one title.</span></div>
+            <div><span class="p">GET /me/ott · PUT · DELETE /me/ott/:id/progress</span><span class="d">The viewer's shelf — continue watching and completed — and per-title progress, including a single episode.</span></div>
+            <div><span class="p">/admin/roadmaps · /admin/ott</span><span class="d">Admin CRUD, publish and unpublish for the two new content types.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s7">
+        <div class="sec-head"><span class="sec-n">07</span><h2>New frontend routes</h2></div>
+        <div class="sec-body">
+          <p>Routes were added; the existing route map was not renumbered (see §24).</p>
+          <div class="chips">
+            <span class="chip a">/saved</span>
+            <span class="chip a">/ott</span>
+            <span class="chip a">/ott/:slug</span>
+            <span class="chip a">/builders/roadmap</span>
+            <span class="chip a">/builders/:username</span>
+            <span class="chip a">/founders/:slug</span>
+            <span class="chip a">/organizations/:slug</span>
+            <span class="chip a">/projects/:slug</span>
+            <span class="chip a">/certificates/verify</span>
+            <span class="chip a">/certificates/verify/:code</span>
+            <span class="chip">/founders/workspace · /market · /competitors · /swot</span>
+            <span class="chip">/founders/workspace/business-model · /gtm · /pitch-deck</span>
+            <span class="chip">/founders/traction</span>
+          </div>
+          <p>
+            The public builder, project, organization, startup and certificate pages render logged
+            out. Everything else sits behind the existing account or ecosystem guard.
+          </p>
+        </div>
+      </section>
+
+      <section id="s8">
+        <div class="sec-head"><span class="sec-n">08</span><h2>New backend modules</h2></div>
+        <div class="sec-body">
+          <p>Four new modules follow the established shape — repository, service, Zod schemas, routes — and one was extended.</p>
+          <ul>
+            <li><code>certificates</code> — issue and verify; the public router is the only anonymous one.</li>
+            <li><code>roadmaps</code> — catalog, the rule-based plan diff, and step completion.</li>
+            <li><code>ott</code> — the shelf, the viewer's progress, and an admin router.</li>
+            <li><code>saved</code> — the platform-wide bookmark table, with a registry that teaches it how each of the twelve entity types is resolved.</li>
+            <li><code>search</code> — extended: a scope table where each entity contributes its visibility predicate and its own card shape.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s9">
+        <div class="sec-head"><span class="sec-n">09</span><h2>Authentication changes</h2></div>
+        <div class="sec-body">
+          <p>
+            None. The session mechanism, opaque cookies and the account model are untouched. What
+            changed is placement: every new per-viewer route is mounted before the public cache
+            group and marked <code>noStore</code>, so no viewer-specific response can be served
+            from cache to someone else.
+          </p>
+        </div>
+      </section>
+
+      <section id="s10">
+        <div class="sec-head"><span class="sec-n">10</span><h2>RBAC changes</h2></div>
+        <div class="sec-body">
+          <p>
+            None to the role definitions. New capabilities reuse the existing gates: admin CRUD for
+            roadmaps and OTT behind the admin guard, builder roadmap behind the builder ecosystem,
+            and saved items behind a plain session because a bookmark list is neither role- nor
+            ecosystem-specific.
+          </p>
+        </div>
+      </section>
+
+      <section id="s11">
+        <div class="sec-head"><span class="sec-n">11</span><h2>Builder features</h2></div>
+        <div class="sec-body">
+          <ul>
+            <li><strong>Career roadmap</strong> — pick a target role, see required skills diffed against the profile, tick steps off, and watch progress persist.</li>
+            <li><strong>STUD OTT</strong> — a catalog of videos, articles, series and short courses with a searchable, filterable shelf and a resume rail that remembers the episode.</li>
+            <li><strong>Saving</strong> — any opportunity, resource, course, drill or brief can be bookmarked from its page and found again under <code>/saved</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s12">
+        <div class="sec-head"><span class="sec-n">12</span><h2>Organization features</h2></div>
+        <div class="sec-body">
+          <ul>
+            <li>A verified organization's public profile is now reachable at <code>/organizations/:slug</code> without an account, from an allow-listed payload — contact details never leave the server.</li>
+            <li>Organizations surface in unified search and can be saved, behind the same active-status gate their public page uses.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s13">
+        <div class="sec-head"><span class="sec-n">13</span><h2>HR features</h2></div>
+        <div class="sec-body">
+          <p>
+            No changes. The HR pipeline, talent discovery and invitation notifications were already
+            complete and remain covered by the suite.
+          </p>
+        </div>
+      </section>
+
+      <section id="s14">
+        <div class="sec-head"><span class="sec-n">14</span><h2>Founder features</h2></div>
+        <div class="sec-body">
+          <ul>
+            <li>Structured workspace editors for market, competitors, SWOT, business model, go-to-market and the eleven-section pitch deck, each its own sub-route so a save round-trips without losing the rest of the page.</li>
+            <li>A dated traction series alongside the current headline figures.</li>
+            <li>A public startup page at a stable handle, with an explicit audience setting — public, investor-visible or private — and an allow-listed serializer behind it.</li>
+            <li>Startups appear in unified search and can be saved by anyone who can already discover them.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s15">
+        <div class="sec-head"><span class="sec-n">15</span><h2>Investor features</h2></div>
+        <div class="sec-body">
+          <p>
+            The shortlist now writes to <code>saved_items</code> and reads from it, so an investor's
+            saved founders and everyone else's bookmarks are one table. The discovery feed, the
+            preferences-driven intelligence view and the connection flow are otherwise unchanged.
+          </p>
+        </div>
+      </section>
+
+      <section id="s16">
+        <div class="sec-head"><span class="sec-n">16</span><h2>Add-ons</h2></div>
+        <div class="sec-body">
+          <p>
+            STUD Hub, résumé builder, portfolio builder, mock tests and interviews, and build-a-project
+            briefs were already complete. They gained one thing in common: each is now saveable, and
+            each renders identically in search results and in the saved list because both read the
+            same card serializers.
+          </p>
+        </div>
+      </section>
+
+      <section id="s17">
+        <div class="sec-head"><span class="sec-n">17</span><h2>Admin features</h2></div>
+        <div class="sec-body">
+          <ul>
+            <li>Admin CRUD, publish and unpublish for roadmap templates and OTT titles.</li>
+            <li>Certificates are issued by the platform when results are finalised rather than authored by hand, so there is no admin CRUD for them — verification is the public surface.</li>
+            <li>Existing admin areas — users, CMS, audit logs — are unchanged.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s18">
+        <div class="sec-head"><span class="sec-n">18</span><h2>Notifications</h2></div>
+        <div class="sec-body">
+          <p>
+            No new event types. The invitation, connection and application notifications already in
+            place carry the new features without change — a founder is notified of an investor
+            connection exactly as before.
+          </p>
+        </div>
+      </section>
+
+      <section id="s19">
+        <div class="sec-head"><span class="sec-n">19</span><h2>Search</h2></div>
+        <div class="sec-body">
+          <p>
+            Unified search now answers six groups in one request. Two rules govern every scope, and
+            both are enforced in code rather than by convention.
+          </p>
+          <div class="note">
+            <span class="note-title">Search never widens visibility</span>
+            <p>A scope's match is the same predicate the entity's own public page uses — public profiles, verified organizations, discoverable projects — because search is unauthenticated and cached, so anything appearing there is world-readable. Suspended accounts are excluded from every profile scope.</p>
+          </div>
+          <div class="note">
+            <span class="note-title">A card is not a document</span>
+            <p>Each scope returns the entity's own result-card shape, shared with that entity's list views. Contact details, workspaces and private fields never enter the payload, and the tests assert their absence rather than trusting the serializer.</p>
+          </div>
+          <p>
+            A single <code>id</code> rides alongside each card so a result can be bookmarked. It is
+            deliberately not part of the card shape, so no other consumer of that shape inherits a
+            database identifier.
+          </p>
+        </div>
+      </section>
+
+      <section id="s20">
+        <div class="sec-head"><span class="sec-n">20</span><h2>Analytics</h2></div>
+        <div class="sec-body">
+          <p>
+            Platform-wide analytics remain out of scope for this pass (see §24). Per-ecosystem
+            analytics that already existed — organization program analytics, investor intelligence
+            aggregates — are untouched and still tested.
+          </p>
+        </div>
+      </section>
+
+      <section id="s21">
+        <div class="sec-head"><span class="sec-n">21</span><h2>Tests executed</h2></div>
+        <div class="sec-body">
+          <p>
+            The suite grew from <strong>203 tests across 15 files</strong> at the audit to
+            <strong>282 tests across 22 files</strong>.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Result</th><th>Scope</th></tr></thead>
+              <tbody>
+                <tr><td class="done">282 passed</td><td>Full backend suite, 22 files — <code>npx vitest run</code></td></tr>
+                <tr><td class="done">17 passed</td><td><code>cross-ecosystem.test.js</code> — the new search scopes and the saved-items mechanism</td></tr>
+                <tr><td class="done">16 passed</td><td><code>ott.test.js</code> — including per-episode progress keys</td></tr>
+                <tr><td class="done">green</td><td>Production build, root <code>npm run build</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The new coverage asserts behaviour rather than shapes:</p>
+          <ul>
+            <li>A private builder profile never appears, whatever the query — asserted as an exact set, not a substring check.</li>
+            <li>Cards carry no <code>bio</code>, <code>userId</code>, workspace or contact email.</li>
+            <li>Saving twice is one row; unsaving twice is not an error; an unpublishable target cannot be saved at all.</li>
+            <li>A bookmark whose target is unpublished disappears from the list while the row survives, so republishing restores it rather than losing it.</li>
+            <li>The investor shortlist and the general saved list are provably the same table.</li>
+            <li>An unknown scope, an unknown entity type and a malformed id all return 400; a nonexistent target returns 404.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s22">
+        <div class="sec-head"><span class="sec-n">22</span><h2>Build result</h2></div>
+        <div class="sec-body">
+          <p>
+            The production build completes cleanly. The only output is the pre-existing bundle-size
+            advisory on the main entry chunk, which predates this work and is not a regression.
+          </p>
+          <div class="paths">
+            <div><span class="p">✓ built clean</span><span class="d">Root <code>npm run build</code> — route-level code splitting intact, no new warnings.</span></div>
+            <div><span class="p">lint</span><span class="d">The root <code>npx eslint</code> invocation cannot run in this project — there is no flat config file. The build is the check, and it is green.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s23">
+        <div class="sec-head"><span class="sec-n">23</span><h2>Remaining external integrations</h2></div>
+        <div class="sec-body">
+          <ul>
+            <li><strong>Certificate document generation</strong> stays an interface, as specified — the credential and its verification are real, but no PDF renderer is faked. A generator plugs in behind the existing seam.</li>
+            <li><strong>Email</strong> continues to use the existing mailer abstraction. No queue or background-job runner was introduced, because nothing in this pass produced work that needs one.</li>
+            <li><strong>AI</strong> is deliberately absent from the career roadmap. The specification forbids faking it, so the plan is rule-based end to end and no provider is named anywhere in the code or copy.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="s24">
+        <div class="sec-head"><span class="sec-n">24</span><h2>Known issues and deviations</h2></div>
+        <div class="sec-body">
+          <p>
+            These are deliberate omissions and open items, recorded rather than quietly dropped.
+          </p>
+          <div class="note risk">
+            <span class="note-title">§78 — global ecosystem switcher: not built</span>
+            <p>By decision; an earlier instruction overrode it. <code>/choose</code> and the logo remain the switching paths. The stale copy that referred to a top-bar switcher has been corrected.</p>
+          </div>
+          <div class="note risk">
+            <span class="note-title">§97 — route map: not renumbered</span>
+            <p>Existing routes keep their current paths. Only genuinely new pages were added, so no link anybody has shared breaks.</p>
+          </div>
+          <div class="note risk">
+            <span class="note-title">Out of scope for this pass</span>
+            <p>Moderation breadth (§63), platform analytics (§65), data export (§80) and feature flags (§94) are confirmed absent and remain open items for a follow-up. Email and background jobs (§59/§91) stay as they are pending evidence that a queue is needed.</p>
+          </div>
+          <div class="note risk">
+            <span class="note-title">Browser verification is outstanding</span>
+            <p>The full API round-trips were verified against a running server: a search result saved, listed with its real link and its card, counted, and removed. The UI for the new pages passed the build but has not been driven in a real browser in this environment, so layout and interaction on <code>/saved</code>, <code>/ott</code> and the new scope chips remain visually unconfirmed.</p>
+          </div>
+          <div class="note">
+            <span class="note-title">Two pre-existing traps worth knowing</span>
+            <p>The development database on this machine predates the current seed, so it holds one public builder and no public founders or organizations — search scopes that correctly return nothing there are not broken. And the second seeded builder logs in as <code>nova@studlyf.local</code> using the standard developer builder password; there is no separate credential key for it.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <span>STUDLYF · master specification §102</span>
+    <span class="mono">282 tests · 22 files · build green</span>
+  </footer>
+</div>
